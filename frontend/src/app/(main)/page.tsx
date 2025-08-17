@@ -2,7 +2,7 @@ import ClientNeedCard from "@/components/ClientNeedCard";
 
 export default function Home() {
 	return (
-		<div className="w-[1100px] max-xl:w-[900px] max-lg:w-full max-lg:px-8 max-md:px-2 mx-auto mt-[100px]">
+		<div className="w-[1100px] max-xl:w-[900px] max-lg:w-full max-lg:px-8 max-md:px-2 mx-auto mt-10">
 			<ClientNeedCard
 				title="Lorem ipsum dolor sit ametx"
 				priceRange={[100, 200]}
