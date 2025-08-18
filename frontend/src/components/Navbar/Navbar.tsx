@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import MenuButton from "../MenuButton";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import FilterBar from "./FilterBar";
