@@ -1,15 +1,5 @@
+import { ClientNeedCardProps } from "@/utils/types";
 import OverlayButton from "./OverlayButton";
-
-interface ClientNeedCardProps {
-    title: string;
-    priceRange: [start: number, end: number];
-    category: string;
-    time: number;
-    bids: number;
-    description: string;
-    skills: string[];
-    clientName: string;
-}
 
 export default function ClientNeedCard({ title, priceRange, category, time, bids, description, skills, clientName }: ClientNeedCardProps) {
     return (
@@ -18,9 +8,17 @@ export default function ClientNeedCard({ title, priceRange, category, time, bids
                 <h2 className="font-primary font-extrabold text-primary md:text-[28px]">
                     {title}
                 </h2>
-                <span className="font-primary font-extrabold text-primary md:text-[28px] text-nowrap">
+                <span className="font-primary font-extrabold text-primary md:text-[28px] text-nowrap max-sm:hidden">
                     ${priceRange[0]} - ${priceRange[1]}
                 </span>
+                <div className="flex flex-col sm:hidden">
+                    <span className="font-primary font-extrabold text-primary text-nowrap -mb-1">
+                        ${priceRange[0]}
+                    </span>
+                    <span className="font-primary font-extrabold text-primary text-nowrap">
+                        ${priceRange[1]}
+                    </span>
+                </div>
             </div>
 
             <div className="flex justify-between opacity-50 mb-[24px]">
@@ -96,7 +94,12 @@ export default function ClientNeedCard({ title, priceRange, category, time, bids
                         mainClassName="grid grid-cols-2 gap-5"
                         overlayContent={
                             <>
-                                <textarea name="" id="" className="resize-none col-span-2" rows={3} placeholder="Description" />
+                                <textarea
+                                    name="description"
+                                    className="resize-none col-span-2"
+                                    rows={3}
+                                    placeholder="Description"
+                                />
                                 <div className="relative">
                                     <input
                                         type="number"

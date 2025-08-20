@@ -44,22 +44,24 @@ export default function Navbar() {
                     </div>
                 </Link>
 
-                <div className="flex items-center gap-5 [&>span>img]:hover:drop-shadow-[0_0_6px_rgba(0,0,0,0.2)] [&>span>img]:cursor-pointer">
+                <div className="flex items-center gap-5 [&>span>span>img]:hover:drop-shadow-[0_0_6px_rgba(0,0,0,0.2)] [&>span>span>img]:cursor-pointer">
                     {/* Messages */}
-                    <span className="relative">
-                        <img
-                            src="/navbar/msg.svg"
-                            alt="Messages"
-                            className="h-[30px] duration-150 transition"
-                            loading="eager"
-                            onClick={() => setMenuShown(m => ({
-                                messagesMenu: !m.messagesMenu,
-                                notificationMenu: false,
-                                userMenu: false
-                            }))}
-                        />
-                        <span className="text-white bg-red absolute top-0 -translate-y-[50%] right-0 text-xs font-primary font-medium px-[5px] py-[1px] translate-x-2 border-3 border-white rounded-full">
-                            2
+                    <span className="sm:relative">
+                        <span className="relative">
+                            <img
+                                src="/navbar/msg.svg"
+                                alt="Messages"
+                                className="h-[30px] duration-150 transition"
+                                loading="eager"
+                                onClick={() => setMenuShown(m => ({
+                                    messagesMenu: !m.messagesMenu,
+                                    notificationMenu: false,
+                                    userMenu: false
+                                }))}
+                            />
+                            <span className="text-white bg-red absolute top-0 -translate-y-[50%] right-0 text-xs font-primary font-medium px-[5px] py-[1px] translate-x-2 border-3 border-white rounded-full">
+                                2
+                            </span>
                         </span>
 
                         <MessagesContainer
@@ -106,21 +108,25 @@ export default function Navbar() {
 
                     {/* Notifications */}
                     <span
-                        className="relative sm:mr-4"
+                        className="sm:relative sm:mr-4"
                     >
-                        <img
-                            src="/navbar/bell.svg"
-                            alt="Notifications"
-                            className="h-[30px] duration-150 transition"
-                            loading="eager"
-                            onClick={() => setMenuShown(m => ({
-                                messagesMenu: false,
-                                notificationMenu: !m.notificationMenu,
-                                userMenu: false
-                            }))}
-                        />
-                        <span className="text-white bg-red absolute top-0 -translate-y-[50%] right-0 text-xs font-primary font-medium px-[5px] py-[1px] translate-x-2 border-3 border-white rounded-full">
-                            2
+                        <span
+                            className="relative"
+                        >
+                            <img
+                                src="/navbar/bell.svg"
+                                alt="Notifications"
+                                className="h-[30px] duration-150 transition"
+                                loading="eager"
+                                onClick={() => setMenuShown(m => ({
+                                    messagesMenu: false,
+                                    notificationMenu: !m.notificationMenu,
+                                    userMenu: false
+                                }))}
+                            />
+                            <span className="text-white bg-red absolute top-0 -translate-y-[50%] right-0 text-xs font-primary font-medium px-[5px] py-[1px] translate-x-2 border-3 border-white rounded-full">
+                                2
+                            </span>
                         </span>
 
                         <NotificationContainer
@@ -148,7 +154,7 @@ export default function Navbar() {
                     </span>
 
                     {/* User */}
-                    <div className="relative">
+                    <div className="sm:relative">
                         <div
                             className="flex items-center gap-[18px] cursor-pointer"
                             onClick={() => setMenuShown(m => ({
