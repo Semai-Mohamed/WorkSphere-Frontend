@@ -2,23 +2,25 @@
 import { SideButtonProps } from "@/utils/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { cloneElement, ReactElement, SVGProps, useState } from "react";
+import { cloneElement, ReactElement, SVGProps, useEffect, useState } from "react";
 
 export default function SideButton(props: SideButtonProps) {
-    const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
     const path = usePathname();
 
+    const childHasActiveLink = props.childrenButtons?.some(childButton => childButton.href === path);
+    const menuExpanded = props.subMenuShown?.[props.index];
+
     const cloneIcon = (icon: ReactElement<SVGProps<SVGSVGElement>>, child: boolean = false, childHref?: string) => {
-        return cloneElement(props.icon, {
+        return cloneElement(icon, {
             className: `${props.customColor
-                ? 'fill-[var(--custom-color)]'
+                ? 'fill-[var(--custom-color)]!'
                 : child
                     ? path === childHref
                         ? 'fill-white'
                         : 'fill-primary'
                     : path === props.href
                         ? 'fill-white'
-                        : menuExpanded
+                        : menuExpanded || childHasActiveLink
                             ? 'fill-white'
                             : 'fill-primary'
                 } opacity-80 size-4`
@@ -29,76 +31,85 @@ export default function SideButton(props: SideButtonProps) {
         <div>
             <button
                 className={`relative z-[1] flex items-center gap-4 w-full text-sm font-primary font-bold px-6 py-3.5 border-1 rounded-[18px] hover:border-transparent duration-200 transition-[background_shadow] cursor-pointer
-                    ${menuExpanded
+                    ${menuExpanded || childHasActiveLink
                         ? 'text-white border-transparent bg-primary shadow-[0_5px_10px_rgba(0,0,0,0.15)]'
-                        : 'text-primary border-[oklch(from_var(--color-primary)_l_c_h_/_0.15)] hover:bg-[oklch(from_var(--color-primary)_l_c_h_/_0.15)]'
+                        : 'text-primary border-[oklch(from_var(--color-primary)_l_c_h_/_0.15)] hover:bg-[oklch(from_var(--color-primary)_l_c_h_/_.15)]'
                     }`}
-                style={{
-                    '--custom-color': `${props.customColor}`
-                } as React.CSSProperties}
-                onClick={() => setMenuExpanded(m => !m)}
+                onClick={() => props.setSubMenuShown(s =>
+                    s[props.index]
+                        ? [false, false, false]
+                        : (s.map((_, i) => props.index === i) as typeof s)
+                )}
             >
                 {cloneIcon(props.icon)}
                 {props.name}
             </button>
 
-            <div className={`relative pl-8 transition-all duration-200 ease-out z-0 -top-[18px] overflow-hidden
+            <div className={`relative transition-[height] pl-8 duration-200 ease-out z-0 -top-[18px] overflow-hidden
                 ${menuExpanded
-                    ? 'max-h-32 -mb-[18px]'
-                    : 'max-h-0'
+                    ? 'h-[114px] -mb-[18px]'
+                    : childHasActiveLink
+                        ? 'h-[66px] -mb-[18px]'
+                        : 'h-0'
                 }`}>
                 {
-                    props.childrenButtons.map((childButton, i) => {
-                        if (i === 0) {
-                            return <Link
-                                key={`${childButton.name}`}
-                                className={`relative flex items-center gap-4 w-full text-sm border-none font-primary font-bold px-6 pb-3.5 pt-[32px] border-1 rounded-b-[18px] hover:border-transparent group cursor-pointer
+                    childHasActiveLink &&
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                        className={`absolute top-[18px] left-0 translate-x-full size-4 transition-[opacity] duration-200 -z-10
+                        ${childHasActiveLink
+                                ? 'fill-dark-primary'
+                                : 'opacity-10 group-hover:opacity-20'
+                            }`}>
+                        <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
+                        <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
+                    </svg>
+                }
+                {
+                    props.childrenButtons.map((childButton, i) =>
+                        <Link
+                            key={`${childButton.name}`}
+                            className={`absolute right-0 left-8 flex items-center gap-4 text-sm border-none font-primary font-bold px-6 pb-3.5 pt-[32px] border-1 rounded-b-[18px] hover:border-transparent group cursor-pointer transition-[top_translate] duration-200 ease-out
                                 ${path === childButton.href
-                                        ? 'text-white fill-dark-primary border-transparent'
-                                        : 'text-primary fill-primary'
-                                    }`}
-                                style={{ zIndex: 2 - 2 * i }}
-                                href={childButton.href}
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" className={`absolute top-[18px] left-0 -translate-x-full size-4 transition-[opacity] duration-200
+                                    ? 'text-white fill-dark-primary border-transparent'
+                                    : menuExpanded
+                                        ? 'text-primary fill-primary'
+                                        : 'text-primary fill-primary -translate-y-[48px]'
+                                }`}
+                            style={{
+                                zIndex: 2 - 2 * i,
+                                top: `${menuExpanded
+                                    ? i * 48
+                                    : path === childButton.href && 0
+                                    }px`
+                            }}
+                            href={childButton.href}
+                        >
+                            {
+                                i === 0 &&
+                                <>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" className="absolute top-[18px] left-0 -translate-x-full size-4 fill-white">
+                                        <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
+                                        <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" className={`absolute top-[18px] left-0 -translate-x-full size-4 transition-[opacity] duration-200
                                 ${path === childButton.href
-                                        ? ''
-                                        : 'opacity-10 group-hover:opacity-20'
-                                    }`}>
-                                    <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
-                                    <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
-                                </svg>
-                                <div className="absolute w-full h-full top-0 left-0 bg-white -z-10 rounded-b-[18px]" />
-                                <div className={`absolute w-full h-full top-0 left-0 -z-10 transition-[opacity] duration-200 rounded-b-[18px]
+                                            ? ''
+                                            : 'opacity-10 group-hover:opacity-20'
+                                        }`}>
+                                        <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
+                                        <path d="M20 20C20 8.9543 11.0457 0 0 0H20V20Z" />
+                                    </svg>
+                                </>
+                            }
+                            <div className="absolute w-full h-full top-0 left-0 bg-white -z-10 rounded-b-[18px]" />
+                            <div className={`absolute w-full h-full top-0 left-0 -z-10 transition-[opacity] duration-200 rounded-b-[18px]
                                     ${path === childButton.href
-                                        ? 'bg-dark-primary'
-                                        : 'bg-primary opacity-10 group-hover:opacity-20'
-                                    }`} />
-                                {cloneIcon(childButton.icon, true, childButton.href)}
-                                {childButton.name}
-                            </Link>
-                        } else {
-                            return <Link
-                                key={`${childButton.name}`}
-                                className={`relative flex items-center gap-4 w-full text-sm border-none font-primary font-bold px-6 pb-3.5 pt-[32px] -mt-[18px] border-1 rounded-b-[18px] hover:border-transparent group cursor-pointer overflow-hidden
-                                ${path === childButton.href
-                                        ? 'text-white border-transparent'
-                                        : 'text-primary'
-                                    }`}
-                                style={{ zIndex: 2 - 2 * i }}
-                                href={childButton.href}
-                            >
-                                <div className="absolute w-full h-full top-0 left-0 bg-white -z-10" />
-                                <div className={`absolute w-full h-full top-0 left-0 -z-10 transition-[opacity] duration-200
-                                    ${path === childButton.href
-                                        ? 'bg-dark-primary'
-                                        : 'bg-primary opacity-10 group-hover:opacity-20'
-                                    }`} />
-                                {cloneIcon(childButton.icon, true, childButton.href)}
-                                {childButton.name}
-                            </Link>
-                        }
-                    }
+                                    ? 'bg-dark-primary'
+                                    : 'bg-primary opacity-10 group-hover:opacity-20'
+                                }`} />
+                            {cloneIcon(childButton.icon, true, childButton.href)}
+                            {childButton.name}
+                        </Link>
                     )
                 }
             </div>

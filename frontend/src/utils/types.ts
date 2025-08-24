@@ -1,3 +1,5 @@
+import React, { SetStateAction } from "react";
+
 export type ClientNeedCardProps = {
     title: string,
     priceRange: [start: number, end: number],
@@ -40,6 +42,6 @@ export type SideButtonProps = {
     customColor?: string,
     href?: string
 } & (
-        { hasChildren?: undefined, childrenButtons?: undefined }
-        | { hasChildren: true, childrenButtons: Array<{ icon: React.ReactElement<React.SVGProps<SVGSVGElement>>, name: string, href: string }> }
+        { index?: undefined, subMenuShown?: undefined, setSubMenuShown?: undefined, hasChildren?: undefined, childrenButtons?: undefined }
+        | { index: number, subMenuShown: [boolean, boolean, boolean], setSubMenuShown: React.Dispatch<SetStateAction<[boolean, boolean, boolean]>>, hasChildren: true, childrenButtons: Array<{ icon: React.ReactElement<React.SVGProps<SVGSVGElement>>, name: string, href: string }> }
     );
