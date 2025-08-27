@@ -37,7 +37,7 @@ export default function Navbar() {
                 <div className="flex items-center gap-5 [&>span>span>img]:hover:drop-shadow-[0_0_6px_rgba(0,0,0,0.2)] [&>span>span>img]:cursor-pointer">
                     {/* Messages */}
                     {
-                        path !== '/inbox' &&
+                        !path.startsWith('/inbox') &&
                         <span className="sm:relative">
                             <span className="relative">
                                 <img

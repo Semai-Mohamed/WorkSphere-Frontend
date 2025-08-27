@@ -14,7 +14,7 @@ export default function ChatContainer() {
     }, [])
 
     return (
-        <div className="shadow flex-2 rounded-4xl p-5 flex flex-col gap-5 min-h-0">
+        <>
             <div className="flex justify-between items-center">
                 <div className="flex items-center gap-3.5">
                     <div className="w-9 aspect-square rounded-full bg-primary" />
@@ -88,11 +88,11 @@ export default function ChatContainer() {
                     className="w-full rounded-full py-3 text-[1rem] pr-[50px] pl-[22px] peer"
                 />
                 <button
-                    className="absolute bg-blue rounded-full flex items-center justify-center top-1.5 right-1.5 h-[calc(100%-12px)] aspect-square p-[9px] group peer-placeholder-shown:hidden">
+                    className="absolute bg-blue rounded-full flex items-center justify-center top-1.5 right-1.5 bottom-1.5 h-[calc(100%-12px)] aspect-square p-[9px] group peer-placeholder-shown:hidden cursor-pointer">
                     <img src="/inbox/send.png" alt="send"
-                        className="translate-x-0.5 group-hover:translate-x-1.5 group-hover:drop-shadow-[-4px_0_1px_rgba(0,0,0,.25)] transition-[translate_filter] duration-200 ease-out cursor-pointer" />
+                        className="translate-x-0.5 group-hover:translate-x-1.5 group-hover:drop-shadow-[-4px_0_1px_rgba(0,0,0,.25)] transition-[translate_filter] duration-200 ease-out" />
                 </button>
             </div>
-        </div>
+        </>
     );
 }

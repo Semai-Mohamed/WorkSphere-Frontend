@@ -1,11 +1,18 @@
-import ChatContainer from "@/components/inbox/ChatContainer";
-import UsersMessagesContainer from "@/components/inbox/UsersMessagesContainer";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Inbox"
+};
 
 export default function Inbox() {
     return (
-        <div className="flex-1 w-[1300px] mx-auto flex gap-6 py-10 max-h-[calc(100vh-84px)]">
-            <UsersMessagesContainer />
-            <ChatContainer />
+        <div className="font-primary text-sm flex items-center gap-4 m-auto">
+            <img
+                src="/navbar/msg.svg"
+                alt="Message"
+                className="h-7"
+            />
+            Please choose a person to start messaging!
         </div>
     );
 }
