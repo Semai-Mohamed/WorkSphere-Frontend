@@ -91,6 +91,15 @@ export default function ServicesPage() {
                     </div>
                 </CardWrapper>
             </div>
+
+            <CardWrapper
+                header={"My Services"}
+                className={"col-span-full"}
+            >
+                <>
+                    {/* TODO: Implement My services component */}
+                </>
+            </CardWrapper>
         </>
     );
 }

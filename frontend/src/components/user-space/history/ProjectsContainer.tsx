@@ -76,6 +76,9 @@ export default function ProjectsContainer({projects}: { projects: ProjectsType }
                                 >
                                     <div
                                         ref={infosRef}
+                                        style={{
+                                            height: 0
+                                        }}
                                         className={`flex justify-between [&>span]:flex [&>span]:flex-col [&>span]:gap-1 transition-[height_padding] duration-150 ease-out overflow-hidden ${isExpanded
                                             ? 'pt-2'
                                             : 'pt-0'
