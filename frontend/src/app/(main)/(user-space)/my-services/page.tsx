@@ -1,5 +1,6 @@
 import NumberCard from "@/components/user-space/NumberCard";
 import CardWrapper from "@/components/user-space/CardWrapper";
+import MyServicesContainer from "@/components/user-space/services/MyServicesContainer";
 
 export default function ServicesPage() {
     const skills = [
@@ -92,14 +93,7 @@ export default function ServicesPage() {
                 </CardWrapper>
             </div>
 
-            <CardWrapper
-                header={"My Services"}
-                className={"col-span-full"}
-            >
-                <>
-                    {/* TODO: Implement My services component */}
-                </>
-            </CardWrapper>
+            <MyServicesContainer/>
         </>
     );
 }

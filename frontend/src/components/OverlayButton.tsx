@@ -1,24 +1,25 @@
 "use client";
 
-import { cloneElement, useEffect, useRef } from "react";
+import { cloneElement, ReactElement, ReactNode, useEffect, useRef } from "react";
 
-export default function OverlayButton({
-    openOverlayButton,
-    overlayContent,
-    mainClassName,
-    cancelButtonContent,
-    confirmButton,
-    externalDataToPass,
-    apiEndpoint
-}: {
-    openOverlayButton: React.ReactElement<Readonly<{ onClick: () => void }>>,
-    overlayContent: React.ReactNode,
-    mainClassName?: string,
-    cancelButtonContent: string,
-    confirmButton: React.ReactElement,
-    externalDataToPass?: Record<string, any>,
-    apiEndpoint?: string
-}) {
+export default function OverlayButton(
+    {
+        openOverlayButton,
+        overlayContent,
+        mainClassName,
+        cancelButtonContent,
+        confirmButton,
+        externalDataToPass,
+        apiEndpoint
+    }: {
+        openOverlayButton: ReactElement<Readonly<{ onClick: () => void }>>,
+        overlayContent: ReactNode,
+        mainClassName?: string,
+        cancelButtonContent: string,
+        confirmButton: ReactElement,
+        externalDataToPass?: Record<string, any>,
+        apiEndpoint?: string
+    }) {
     const dialog = useRef<HTMLDialogElement>(null);
     const overlay = useRef<HTMLFormElement>(null);
 
@@ -58,7 +59,9 @@ export default function OverlayButton({
                         >
                             {cancelButtonContent}
                         </button>
-                        {confirmButton}
+                        <>
+                            {confirmButton}
+                        </>
                     </div>
                 </form>
             </dialog>
