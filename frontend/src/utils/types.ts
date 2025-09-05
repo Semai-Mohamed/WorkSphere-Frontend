@@ -46,8 +46,23 @@ export type SideButtonProps = {
     customColor?: string,
     href?: string
 } & (
-        { index?: undefined, subMenuShown?: undefined, setSubMenuShown?: undefined, hasChildren?: undefined, childrenButtons?: undefined }
-        | { index: number, subMenuShown: [boolean, boolean, boolean], setSubMenuShown: React.Dispatch<SetStateAction<[boolean, boolean, boolean]>>, hasChildren: true, childrenButtons: Array<{ icon: React.ReactElement<React.SVGProps<SVGSVGElement>>, name: string, href: string }> }
+        {
+            index?: undefined,
+            subMenuShown?: undefined,
+            setSubMenuShown?: undefined,
+            hasChildren?: undefined,
+            childrenButtons?: undefined
+        }
+        | {
+            index: number,
+            subMenuShown: [boolean, boolean, boolean], setSubMenuShown: React.Dispatch<SetStateAction<[boolean, boolean, boolean]>>,
+            hasChildren: true,
+            childrenButtons: Array<{
+                icon: React.ReactElement<React.SVGProps<SVGSVGElement>>,
+                name: string,
+                href: string
+            }>
+        }
     );
 
 export type ProjectsType = Array<{
@@ -59,3 +74,11 @@ export type ProjectsType = Array<{
     cost: number,
     client: string
 }>
+
+export type HowCardProps = {
+    index: number;
+    color: "green" | "blue";
+    title: string;
+    paragraph: string;
+    buttonContent?: string;
+};

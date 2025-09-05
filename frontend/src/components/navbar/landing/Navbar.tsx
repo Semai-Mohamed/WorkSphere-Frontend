@@ -11,7 +11,7 @@ export default function Navbar({
 }) {
     return (
         <div className="sticky top-0 right-0 left-0 z-10 h-0">
-            <header className="w-full py-4 shadow-[0_0_27px_rgba(0,0,0,0.08)] rounded-b-[36px] flex justify-between px-[140px] max-lg:px-[60px] max-sm:px-6 absolute top-0 right-0 left-0 bg-white">
+            <header className="w-full py-4 shadow-[0_0_27px_rgba(0,0,0,0.08)] rounded-b-[36px] flex justify-between px-[140px] max-lg:px-[60px] max-sm:px-6 z-10 sticky top-0 right-0 left-0 bg-white">
                 {/* Logo */}
                 <div className="flex gap-3.5 items-center">
                     <Image
