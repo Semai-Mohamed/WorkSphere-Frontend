@@ -36,7 +36,9 @@ export default function HowCard({
                 {title}
             </h4>
 
-            <p className="text-lg max-md:text-[16px] leading-6 max-md:leading-snug tracking-wide">{paragraph}</p>
+            <p className="text-lg max-md:text-[16px] leading-6 max-md:leading-snug tracking-wide">
+                {paragraph}
+            </p>
 
             {buttonContent && (
                 <button className="font-primary font-bold text-sm px-5 py-2 border-2 border-[var(--color-custom)] text-[var(--color-custom)] sm:self-center rounded-[14px] hover:bg-[var(--color-custom)] hover:text-white transition duration-200 ease-out cursor-pointer mt-5">

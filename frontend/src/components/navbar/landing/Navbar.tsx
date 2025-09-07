@@ -85,9 +85,12 @@ export default function Navbar({
                     >
                         Log in
                     </Link>
-                    <button className="normal-button font-medium py-3 px-[22px]">
+                    <Link
+                        href={"/signup"}
+                        className="normal-button font-medium py-3 px-[22px]"
+                    >
                         Sign up
-                    </button>
+                    </Link>
                 </div>
                 {/* Responsive menu */}
                 <div className="xl:hidden sm:relative" ref={responsiveMenuRef}>
@@ -138,13 +141,16 @@ export default function Navbar({
                         <div className="flex gap-3">
                             <Link
                                 href={"/login"}
-                                className="stroke-button flex justify-center font-medium border-primary text-primary opacity-100 py-2.5 px-[22px] flex-1"
+                                className="stroke-button text-center font-medium border-primary text-primary opacity-100 py-2.5 px-[22px] flex-1"
                             >
                                 Log in
                             </Link>
-                            <button className="normal-button font-medium py-3 px-[22px] flex-1">
+                            <Link
+                                href={"/signup"}
+                                className="normal-button font-medium py-3 px-[22px] flex-1 text-center text-[16px]"
+                            >
                                 Sign up
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

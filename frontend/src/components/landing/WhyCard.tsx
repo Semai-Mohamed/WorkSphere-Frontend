@@ -23,7 +23,9 @@ export default function WhyCard({
             >
                 {title}
             </h4>
-            <p className="text-lg max-md:text-[16px] leading-6 max-md:leading-snug tracking-wide">{paragraph}</p>
+            <p className="text-lg max-md:text-[16px] leading-6 max-md:leading-snug tracking-wide">
+                {paragraph}
+            </p>
         </div>
     );
 }
