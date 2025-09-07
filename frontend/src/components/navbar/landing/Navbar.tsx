@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
 export default function Navbar({
@@ -10,6 +10,23 @@ export default function Navbar({
     setIsFreelancer: Dispatch<SetStateAction<boolean>>;
 }) {
     const [menuExpanded, setMenuExpanded] = useState<boolean>(false);
+    const responsiveMenuRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (
+                responsiveMenuRef.current &&
+                !responsiveMenuRef.current.contains(e.target as Node)
+            ) {
+                setMenuExpanded(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
     return (
         <div className="sticky top-0 right-0 left-0 z-10 h-0">
             <header className="w-full py-4 shadow-[0_0_27px_rgba(0,0,0,0.08)] rounded-b-[36px] flex justify-between px-[140px] max-lg:px-[60px] max-sm:px-6 z-10 sticky top-0 right-0 left-0 bg-white">
@@ -73,7 +90,7 @@ export default function Navbar({
                     </button>
                 </div>
                 {/* Responsive menu */}
-                <div className="xl:hidden sm:relative">
+                <div className="xl:hidden sm:relative" ref={responsiveMenuRef}>
                     <span
                         className="cursor-pointer"
                         onClick={() => setMenuExpanded((m) => !m)}
@@ -92,7 +109,7 @@ export default function Navbar({
                     </span>
 
                     <div
-                        className={`absolute max-sm:w-[calc(100%-12px)] max-sm:mx-auto shadow right-0 top-[70px] max-sm:top-[84px] flex flex-col gap-1 w-[300px] bg-white rounded-[18px] [&>button]:font-primary [&>button]:cursor-pointer [&>button]:text-lg p-2.5 transition-[translate_opacity] duration-150 ease-out ${
+                        className={`absolute max-sm:w-[calc(100%-24px)] max-sm:right-3 shadow right-0 top-[70px] max-sm:top-[84px] flex flex-col gap-1 w-[300px] bg-white rounded-[18px] [&>button]:font-primary [&>button]:cursor-pointer [&>button]:text-lg p-4 transition-[translate_opacity] duration-150 ease-out ${
                             menuExpanded
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 pointer-events-none -translate-y-4"

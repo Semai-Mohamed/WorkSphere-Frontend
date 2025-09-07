@@ -6,6 +6,7 @@ import WhyCard from "@/components/landing/WhyCard";
 import { CategoryCard } from "@/components/landing/CategoryCard";
 import HowCard from "@/components/landing/HowCard";
 import { HowCardProps } from "@/utils/types";
+import Link from "next/link";
 
 export default function LandingPage() {
     const [isFreelancer, setIsFreelancer] = useState<boolean>(true);
@@ -98,7 +99,7 @@ export default function LandingPage() {
             />
 
             {/* Hero section */}
-            <div className="flex flex-col gap-[200px]">
+            <div className="flex flex-col gap-[200px] max-md:gap-[120px]">
                 <section className="h-screen bg-black flex items-center rounded-b-[36px] relative overflow-hidden">
                     {[1, 2, 3].map((imageId, i) => (
                         <Image
@@ -109,7 +110,7 @@ export default function LandingPage() {
                             alt="Background"
                             width={1000}
                             height={1000}
-                            className="object-cover absolute left-0 top-0 w-full h-full animate-hero-images"
+                            className="object-cover absolute left-0 top-0 w-full h-full animate-hero-images max-md:object-[70%_50%]"
                             style={{
                                 animationDelay: `${i * 3000}ms`,
                                 zIndex: 2 - i,
@@ -118,26 +119,26 @@ export default function LandingPage() {
                     ))}
                     <div className="absolute z-[2] left-0 top-0 w-full h-full bg-gradient-to-r from-25% from-[rgba(0,0,0,.75)] to-[rgba(0,0,0,0)]" />
                     <div className="landing-container mx-auto z-[2]">
-                        <div className="flex flex-col col-span-6 max-xl:col-span-4 [&_*]:text-white gap-5">
-                            <span className="font-primary font-extrabold text-[43px] leading-14">
-                                Ride the WorkWave and Catch the Perfect{" "}
+                        <div className="flex flex-col col-span-6 max-xl:col-span-4 max-md:col-span-full [&_*]:text-white gap-5">
+                            <span className="font-primary font-extrabold text-[43px] max-md:text-3xl leading-14 max-md:leading-normal">
+                                Ride the WorkWave and Catch the Perfect
                                 <span className="font-primary font-extrabold bg-gradient-to-r from-blue to-green bg-clip-text text-transparent!">
                                     Wave of Opportunities!
                                 </span>
                             </span>
-                            <p className="font-secondary text-white text-[21.33px] tracking-[0.4px] mb-10">
+                            <p className="font-secondary text-white text-[21.33px] max-md:text-lg tracking-[0.4px] mb-10">
                                 {isFreelancer
                                     ? "Unlock opportunities to earn reliable income, all while working from home."
                                     : "Connect with reliable talented freelances, and grow your business, just from home."}
                             </p>
-                            <div className="flex gap-[43px] items-center">
+                            <div className="flex gap-[43px] max-sm:flex-col max-sm:gap-5 sm:items-center">
                                 <button className="normal-button">
                                     {isFreelancer
                                         ? "Find work opportunities"
                                         : "Find freelance services"}
                                 </button>
                                 <button
-                                    className="font-primary font-bold cursor-pointer"
+                                    className="font-primary font-bold cursor-pointer max-md:text-sm"
                                     onClick={() => setIsFreelancer((i) => !i)}
                                 >
                                     I want to {isFreelancer ? "hire" : "work"}
@@ -148,9 +149,9 @@ export default function LandingPage() {
                 </section>
 
                 {/* Why section */}
-                <section className="landing-container gap-y-14 max-xl:gap-y-10">
+                <section className="landing-container md:gap-y-14 md:max-xl:gap-y-10 ">
                     <div className="col-span-full flex justify-center mb-8">
-                        <h1 className="col-span-full bg-gradient-to-r from-blue to-green w-fit bg-clip-text text-transparent">
+                        <h1 className="col-span-full bg-gradient-to-r from-blue to-green w-fit bg-clip-text text-transparent max-md:text-3xl">
                             Why WorkWave?
                         </h1>
                     </div>
@@ -166,7 +167,7 @@ export default function LandingPage() {
                         width={1000}
                         height={0}
                         alt="Security"
-                        className="col-span-7 max-xl:col-span-2 rounded-[36px] h-full object-cover"
+                        className="col-span-7 max-xl:col-span-2 rounded-[36px] h-full object-cover max-md:hidden"
                     />
 
                     {/* Freedom */}
@@ -175,14 +176,14 @@ export default function LandingPage() {
                         width={1000}
                         height={0}
                         alt="Freedom"
-                        className="col-span-4 max-xl:col-span-2 rounded-[36px] h-full object-cover"
+                        className="col-span-4 max-xl:col-span-2 rounded-[36px] h-full object-cover max-md:hidden"
                     />
                     <Image
                         src="/landing/why-section/freedom-2.png"
                         width={1000}
                         height={0}
                         alt="Freedom"
-                        className="col-span-3 max-xl:hidden rounded-[36px] h-full object-cover"
+                        className="col-span-3 max-xl:hidden rounded-[36px] h-full object-cover max-md:hidden"
                     />
                     <WhyCard
                         title="Freedom"
@@ -201,41 +202,50 @@ export default function LandingPage() {
                         width={1000}
                         height={0}
                         alt="Freedom"
-                        className="col-span-4 max-xl:col-span-2 rounded-[36px] h-full object-cover"
+                        className="col-span-4 max-xl:col-span-2 rounded-[36px] h-full object-cover max-md:hidden"
                     />
                     <Image
                         src="/landing/why-section/toolbox-2.png"
                         width={1000}
                         height={0}
                         alt="Freedom"
-                        className="col-span-3 max-xl:hidden rounded-[36px] h-full object-cover"
+                        className="col-span-3 max-xl:hidden rounded-[36px] h-full object-cover max-md:hidden"
                     />
                 </section>
 
                 {/* Categories section */}
-                <section className="landing-container bg-gradient-to-br from-primary to-dark-primary py-20 max-xl:py-12 max-xl:px-16 rounded-[36px]">
+                <section className="landing-container bg-gradient-to-br from-primary to-dark-primary py-20 max-xl:py-12 max-xl:px-16 max-sm:px-9 max-sm:py-8 rounded-[36px]">
                     <div className="flex flex-col gap-5 max-xl:gap-2 col-start-2 col-span-4 max-xl:col-span-full xl:row-span-2">
-                        <h1 className="text-white">
+                        <h1 className="text-white max-md:text-3xl max-sm:text-2xl">
                             Many categories just to set you up!
                         </h1>
 
-                        <p className="text-[21px] tracking-wide text-white">
+                        <p className="text-[21px] max-md:text-lg tracking-wide text-white">
                             We offer all the categories and fields that are
                             available on the freelance market, you can start
                             working in the field that you are skilled in, in
                             just few clicks.
                         </p>
 
-                        <button className="mt-10 max-xl:mb-12 max-xl:mt-6 stroke-button w-fit border-4 border-white text-[21px] text-white opacity-100 hover:bg-white hover:text-primary hover:translate-0 hover:drop-shadow-none">
-                            Join us
-                        </button>
+                        <div className="flex items-center gap-6 max-sm:gap-4 mt-10 lg:max-xl:mb-12 max-xl:mt-6">
+                            <button className="stroke-button border-4 border-white text-[21px] text-white opacity-100 hover:bg-white hover:text-primary hover:translate-0 hover:drop-shadow-none max-sm:text-lg max-sm:px-3 max-sm:flex-1 max-sm:max-w-[180px] max-sm:py-3">
+                                Join us
+                            </button>
+
+                            <Link
+                                href={""}
+                                className="font-primary font-bold cursor-pointer h-fit text-white opacity-40 hover:opacity-100 transition-opacity duration-150 max-sm:text-sm max-sm:text-center"
+                            >
+                                View categories
+                            </Link>
+                        </div>
                     </div>
 
                     {/* Category Cards */}
                     {categoryCards.map((category, i) => (
                         <CategoryCard key={i} {...category} />
                     ))}
-                    <div className="col-span-2 flex items-center justify-center">
+                    <div className="col-span-2 flex items-center justify-center max-lg:hidden">
                         <button className="font-primary font-bold text-sm text-white opacity-30 cursor-pointer">
                             View more
                         </button>
@@ -245,14 +255,14 @@ export default function LandingPage() {
                 {/* How section */}
                 <section className="landing-container">
                     <div className="col-span-full flex justify-center mb-8">
-                        <h1 className="col-span-full bg-gradient-to-r from-blue to-green w-fit bg-clip-text text-transparent">
+                        <h1 className="col-span-full bg-gradient-to-r from-blue to-green w-fit bg-clip-text text-transparent max-md:text-3xl">
                             How it works?
                         </h1>
                     </div>
                     {howCards.firstSection.map((card, i) => (
                         <HowCard key={i} index={i + 1} {...card} />
                     ))}
-                    <p className="col-span-full text-[21px] leading-6 tracking-wide mb-4 mt-16">
+                    <p className="col-span-full text-[21px] max-md:text-[16px] leading-6 max-md:leading-snug tracking-wide mb-4 mt-16">
                         You don’t want to get through this process? Well, we
                         made you another choice :
                     </p>
@@ -262,21 +272,22 @@ export default function LandingPage() {
                 </section>
 
                 {/* Free Section */}
-                <section className="landing-container bg-gradient-to-br from-primary to-dark-primary py-20 max-xl:py-12 max-xl:px-16 rounded-[36px] mb-28 relative overflow-hidden">
-                    <div className="absolute left-0 top-0 rotate-[-15deg] scale-[150%] opacity-10">
+                <section className="landing-container bg-gradient-to-br from-primary to-dark-primary py-20 max-xl:py-12 max-xl:px-16 max-sm:px-9 max-sm:py-8 rounded-[36px] mb-28 relative overflow-hidden">
+                    <div className="absolute left-0 top-0 right-0 bottom-0 flex items-center justify-center">
                         <Image
                             src="/landing/free-section/pattern.png"
                             alt=""
                             width={1300}
-                            height={0}
+                            height={1300}
+                            className="rotate-[-15deg] scale-[150%] max-md:scale-[300%] opacity-10"
                         />
                     </div>
-                    <div className="flex flex-col gap-5 max-xl:gap-2 xl:col-start-2 col-span-4 max-xl:col-span-3 z-[1]">
-                        <h1 className="text-white">
+                    <div className="flex flex-col gap-5 max-xl:gap-2 xl:col-start-2 col-span-4 max-xl:col-span-3 max-lg:col-span-full z-[1]">
+                        <h1 className="text-white max-md:text-3xl max-sm:text-2xl">
                             WorkWave is totally free!
                         </h1>
 
-                        <p className="text-[21px] tracking-wide text-white">
+                        <p className="text-[21px] max-md:text-lg tracking-wide text-white">
                             And finally, you don’t have to pay on additional
                             services on WorkWave. Every user gets the full
                             functionalities of WorkWave platform, which means
@@ -284,7 +295,7 @@ export default function LandingPage() {
                             certification, no advertising services...
                         </p>
 
-                        <button className="mt-10 max-xl:mt-6 stroke-button w-fit border-4 border-white text-[21px] text-white opacity-100 hover:bg-white hover:text-primary hover:translate-0 hover:drop-shadow-none">
+                        <button className="mt-10 max-xl:mt-6 stroke-button sm:w-fit border-4 border-white text-[21px] max-sm:text-lg max-sm:px-3 max-sm:flex-1 max-sm:py-3 text-white opacity-100 hover:bg-white hover:text-primary hover:translate-0 hover:drop-shadow-none">
                             Join us now
                         </button>
                     </div>
@@ -294,7 +305,7 @@ export default function LandingPage() {
                         alt="WorkWave is totally free!"
                         width={1000}
                         height={0}
-                        className="my-auto xl:col-start-7 col-span-5 max-xl:col-span-3 z-[2]"
+                        className="my-auto xl:col-start-7 col-span-5 max-xl:col-span-3 max-lg:hidden z-[2]"
                     />
                 </section>
             </div>

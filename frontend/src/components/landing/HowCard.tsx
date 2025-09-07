@@ -9,7 +9,7 @@ export default function HowCard({
 }: HowCardProps) {
     return (
         <div
-            className="col-span-4 max-xl:col-span-2 flex flex-col gap-3 px-10 py-8 bg-[oklch(from_var(--color-custom)_l_c_h_/_.15)] rounded-[36px] relative"
+            className="col-span-4 max-xl:col-span-2 max-lg:col-span-full flex flex-col gap-3 max-md:gap-2 px-10 py-8 bg-[oklch(from_var(--color-custom)_l_c_h_/_.15)] rounded-[36px] relative overflow-hidden"
             style={
                 {
                     "--color-custom": `var(--color-${color})`,
@@ -32,14 +32,14 @@ export default function HowCard({
                 </span>
             </span>
 
-            <h4 className="font-primary font-extrabold text-[28px] text-[var(--color-custom)]">
+            <h4 className="font-primary font-extrabold text-[28px] max-md:text-2xl text-[var(--color-custom)]">
                 {title}
             </h4>
 
-            <p className="text-lg leading-6 tracking-wide">{paragraph}</p>
+            <p className="text-lg max-md:text-[16px] leading-6 max-md:leading-snug tracking-wide">{paragraph}</p>
 
             {buttonContent && (
-                <button className="font-primary font-bold text-sm px-5 py-2 border-2 border-[var(--color-custom)] text-[var(--color-custom)] self-center rounded-[14px] hover:bg-[var(--color-custom)] hover:text-white transition duration-200 ease-out cursor-pointer mt-5">
+                <button className="font-primary font-bold text-sm px-5 py-2 border-2 border-[var(--color-custom)] text-[var(--color-custom)] sm:self-center rounded-[14px] hover:bg-[var(--color-custom)] hover:text-white transition duration-200 ease-out cursor-pointer mt-5">
                     {buttonContent}
                 </button>
             )}
