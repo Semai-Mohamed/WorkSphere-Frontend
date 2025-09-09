@@ -1,4 +1,4 @@
-import { HowCardProps } from "@/utils/types";
+import HowCardProps from "@/utils/types/HowCardProps";
 
 export default function HowCard({
     index,

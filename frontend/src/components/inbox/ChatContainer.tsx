@@ -11,7 +11,7 @@ export default function ChatContainer() {
         if (chatContainer) {
             chatContainer.scrollTop = chatContainer.scrollHeight;
         }
-    }, [])
+    }, []);
 
     return (
         <>
@@ -45,11 +45,7 @@ export default function ChatContainer() {
                         }
                     />
                     <button className="normal-button text-sm py-2 px-4 flex items-center gap-2">
-                        <img
-                            src="/inbox/call.png"
-                            alt=""
-                            className="h-3.5"
-                        />
+                        <img src="/inbox/call.png" alt="" className="h-3.5" />
                         Call
                     </button>
                 </div>
@@ -71,12 +67,39 @@ export default function ChatContainer() {
                 {/*Todo: Complete message component*/}
                 <MessagesContainer
                     messages={[
-                        { messageFrom: "him", message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley", timestamp: "siuu" },
-                        { messageFrom: "him", message: "siuu", timestamp: "siuu" },
-                        { messageFrom: "him", message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley", timestamp: "12:47PM" },
-                        { messageFrom: "me", message: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley", timestamp: "12:47PM" },
-                        { messageFrom: "me", message: "siuu", timestamp: "siuu" },
-                        { messageFrom: "me", message: "siuu", timestamp: "siuu" },
+                        {
+                            messageFrom: "him",
+                            message:
+                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+                            timestamp: "siuu",
+                        },
+                        {
+                            messageFrom: "him",
+                            message: "siuu",
+                            timestamp: "siuu",
+                        },
+                        {
+                            messageFrom: "him",
+                            message:
+                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+                            timestamp: "12:47PM",
+                        },
+                        {
+                            messageFrom: "me",
+                            message:
+                                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley",
+                            timestamp: "12:47PM",
+                        },
+                        {
+                            messageFrom: "me",
+                            message: "siuu",
+                            timestamp: "siuu",
+                        },
+                        {
+                            messageFrom: "me",
+                            message: "siuu",
+                            timestamp: "siuu",
+                        },
                     ]}
                 />
             </div>
@@ -87,10 +110,12 @@ export default function ChatContainer() {
                     placeholder="Message..."
                     className="w-full rounded-full py-3 text-[1rem] pr-[50px] pl-[22px] peer"
                 />
-                <button
-                    className="absolute bg-blue rounded-full flex items-center justify-center top-1.5 right-1.5 bottom-1.5 h-[calc(100%-12px)] aspect-square p-[9px] group peer-placeholder-shown:hidden cursor-pointer">
-                    <img src="/inbox/send.png" alt="send"
-                        className="translate-x-0.5 group-hover:translate-x-1.5 group-hover:drop-shadow-[-4px_0_1px_rgba(0,0,0,.25)] transition-[translate_filter] duration-200 ease-out" />
+                <button className="absolute bg-blue rounded-full flex items-center justify-center top-1.5 right-1.5 bottom-1.5 h-[calc(100%-12px)] aspect-square p-[9px] group peer-placeholder-shown:hidden cursor-pointer">
+                    <img
+                        src="/inbox/send.png"
+                        alt="send"
+                        className="translate-x-0.5 group-hover:translate-x-1.5 group-hover:drop-shadow-[-4px_0_1px_rgba(0,0,0,.25)] transition-[translate_filter] duration-200 ease-out"
+                    />
                 </button>
             </div>
         </>

@@ -1,15 +1,27 @@
+"use client";
 import CardWrapper from "@/components/user-space/CardWrapper";
 import LatestProjects from "@/components/user-space/dashboard/LatestProjects";
 import MyServices from "@/components/user-space/dashboard/MyServices";
 import SkillsPie from "@/components/user-space/dashboard/SkillsPie";
 import NumberCard from "@/components/user-space/NumberCard";
+import { useEffect } from "react";
 
 export default function DashboardPage() {
+    const getUserRole = (): "freelancer" | "client" => {
+        return "client";
+    };
+
+    const userRole = getUserRole();
+
+    useEffect(() => {
+        document.body.classList.add(`role-${userRole}`);
+    }, []);
+
     return (
         <>
             <NumberCard
-                header="Profit"
-                value='$1700'
+                header={userRole === "freelancer" ? `Profit` : "Spendings"}
+                value="$1700"
                 margin="+25%"
                 href=""
             />
@@ -19,31 +31,54 @@ export default function DashboardPage() {
                 margin="-25%"
                 href="/history"
             />
-            <SkillsPie skills={[
-                { 'Graphic design': 12 },
-                { 'Graphic design': 12 },
-                { 'Graphic design': 12 }
-            ]} />
+            {userRole === "freelancer" ? (
+                <SkillsPie
+                    skills={[
+                        { "Graphic design": 12 },
+                        { "Graphic design": 12 },
+                        { "Graphic design": 12 },
+                    ]}
+                />
+            ) : (
+                <div className="flex flex-col gap-2 max-lg:col-span-full max-lg:flex-row">
+                    <CardWrapper
+                        header="Pending Projects"
+                        className="flex-row justify-between items-center flex-1 lg:rounded-b-lg max-lg:rounded-r-lg max-sm:p-5"
+                    >
+                        <div className="font-primary font-bold text-4xl text-primary max-sm:text-2xl">
+                            3
+                        </div>
+                    </CardWrapper>
+                    <CardWrapper
+                        header="Active Needs"
+                        className="flex-row justify-between items-center flex-1 lg:rounded-t-lg max-lg:rounded-l-lg max-sm:p-5"
+                    >
+                        <div className="font-primary font-bold text-4xl text-primary flex items-center gap-2 max-sm:text-2xl">
+                            25
+                        </div>
+                    </CardWrapper>
+                </div>
+            )}
             <MyServices
                 services={[
                     {
-                        name: 'Lorem ipsum dolor sit amet, elit elit elit elit elit elit',
-                        skill: 'Packaging Design',
+                        name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
+                        skill: "Packaging Design",
                         sold: 4,
-                        cost: 120
+                        cost: 120,
                     },
                     {
-                        name: 'Lorem ipsum dolor sit amet, elit elit elit elit elit elit',
-                        skill: 'Packaging Design',
+                        name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
+                        skill: "Packaging Design",
                         sold: 4,
-                        cost: 120
+                        cost: 120,
                     },
                     {
-                        name: 'Lorem ipsum dolor sit amet, elit elit elit elit elit elit',
-                        skill: 'Packaging Design',
+                        name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
+                        skill: "Packaging Design",
                         sold: 4,
-                        cost: 120
-                    }
+                        cost: 120,
+                    },
                 ]}
             />
             <LatestProjects
@@ -55,7 +90,7 @@ export default function DashboardPage() {
                         date: "Apr 14 2024",
                         deadline: "Apr 14 2024",
                         cost: 120,
-                        client: "string"
+                        client: "string",
                     },
                     {
                         name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
@@ -64,7 +99,7 @@ export default function DashboardPage() {
                         date: "Apr 14 2024",
                         deadline: "Apr 14 2024",
                         cost: 1000,
-                        client: "string"
+                        client: "string",
                     },
                     {
                         name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
@@ -73,7 +108,7 @@ export default function DashboardPage() {
                         date: "Apr 14 2024",
                         deadline: "Apr 14 2024",
                         cost: 200,
-                        client: "string"
+                        client: "string",
                     },
                     {
                         name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
@@ -82,7 +117,7 @@ export default function DashboardPage() {
                         date: "Apr 14 2024",
                         deadline: "Apr 14 2024",
                         cost: 500,
-                        client: "string"
+                        client: "string",
                     },
                 ]}
             />

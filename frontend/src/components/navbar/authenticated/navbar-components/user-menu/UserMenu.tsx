@@ -2,17 +2,18 @@ import MenuButton from "./MenuButton";
 
 export default function UserMenu({
     userMenuShown,
-    setUserShown
+    setUserShown,
 }: {
-    userMenuShown: boolean,
-    setUserShown: () => void
+    userMenuShown: boolean;
+    setUserShown: () => void;
 }) {
     return (
         <div
-            className={`absolute sm:top-[80px] lg:right-[50%] max-lg:right-0 lg:translate-x-[50%] w-[360px] grid grid-cols-2 gap-x-2.5 max-sm:px-2 max-sm:top-[calc(100%+10px)] max-sm:w-full ${userMenuShown
-                ? "gap-y-2.5"
-                : "gap-y-0 pointer-events-none -translate-y-5 opacity-0"
-                } transition-all duration-200 ease-out`}
+            className={`absolute sm:top-[80px] lg:right-[50%] max-lg:right-0 lg:translate-x-[50%] w-[360px] grid grid-cols-2 gap-x-2.5 max-sm:px-2 max-sm:top-[calc(100%+10px)] max-sm:w-full ${
+                userMenuShown
+                    ? "gap-y-2.5"
+                    : "gap-y-0 pointer-events-none -translate-y-5 opacity-0"
+            } transition-all duration-200 ease-out`}
         >
             <MenuButton name="Dashboard" />
             <MenuButton name="Working On" />

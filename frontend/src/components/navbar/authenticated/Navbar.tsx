@@ -3,10 +3,11 @@ import Image from "next/image";
 import { useReducer } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MenuShownType, NavbarReducerAction } from "@/utils/types";
 import MessagesContainer from "./navbar-components/messages/MessagesContainer";
 import NotificationContainer from "./navbar-components/notifications/NotificationsContainer";
 import UserMenu from "./navbar-components/user-menu/UserMenu";
+import MenuShownType from "@/utils/types/MenuShownType";
+import NavbarReducerAction from "@/utils/types/NavbarReducerAction";
 
 type MenuKey = keyof MenuShownType;
 

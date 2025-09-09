@@ -5,8 +5,8 @@ import Image from "next/image";
 import WhyCard from "@/components/landing/WhyCard";
 import { CategoryCard } from "@/components/landing/CategoryCard";
 import HowCard from "@/components/landing/HowCard";
-import { HowCardProps } from "@/utils/types";
 import Link from "next/link";
+import HowCardProps from "@/utils/types/HowCardProps";
 
 export default function LandingPage() {
     const [isFreelancer, setIsFreelancer] = useState<boolean>(true);
@@ -121,7 +121,7 @@ export default function LandingPage() {
                     <div className="landing-container mx-auto z-[2]">
                         <div className="flex flex-col col-span-6 max-xl:col-span-4 max-md:col-span-full [&_*]:text-white gap-5">
                             <span className="font-primary font-extrabold text-[43px] max-md:text-3xl leading-14 max-md:leading-normal">
-                                Ride the WorkWave and Catch the Perfect
+                                Ride the WorkWave and Catch the Perfect{" "}
                                 <span className="font-primary font-extrabold bg-gradient-to-r from-blue to-green bg-clip-text text-transparent!">
                                     Wave of Opportunities!
                                 </span>
@@ -234,7 +234,7 @@ export default function LandingPage() {
 
                             <Link
                                 href={""}
-                                className="font-primary font-bold cursor-pointer h-fit text-white opacity-40 hover:opacity-100 transition-opacity duration-150 max-sm:text-sm max-sm:text-center"
+                                className="lg:hidden font-primary font-bold cursor-pointer h-fit text-white opacity-40 hover:opacity-100 transition-opacity duration-150 max-sm:text-sm max-sm:text-center"
                             >
                                 View categories
                             </Link>

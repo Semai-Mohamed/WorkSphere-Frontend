@@ -1,8 +1,8 @@
 import ProjectsContainer from "@/components/user-space/history/ProjectsContainer";
-import {ProjectsType} from "@/utils/types";
 import NumberCard from "@/components/user-space/NumberCard";
 import ProjectsBarChart from "@/components/user-space/history/ProjectsBarChart";
 import ProjectsLineChart from "@/components/user-space/history/ProjectsLineChart";
+import ProjectsType from "@/utils/types/ProjectsType";
 
 export default function HistoryPage() {
     const projects: ProjectsType = [
@@ -13,7 +13,7 @@ export default function HistoryPage() {
             date: "Apr 14 2024",
             deadline: "Apr 14 2024",
             cost: 120,
-            client: "string"
+            client: "string",
         },
         {
             name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
@@ -22,7 +22,7 @@ export default function HistoryPage() {
             date: "Apr 14 2024",
             deadline: "Apr 14 2024",
             cost: 1000,
-            client: "string"
+            client: "string",
         },
         {
             name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
@@ -31,7 +31,7 @@ export default function HistoryPage() {
             date: "Apr 14 2024",
             deadline: "Apr 14 2024",
             cost: 200,
-            client: "string"
+            client: "string",
         },
         {
             name: "Lorem ipsum dolor sit amet, elit elit elit elit elit elit",
@@ -40,7 +40,7 @@ export default function HistoryPage() {
             date: "Apr 14 2024",
             deadline: "Apr 14 2024",
             cost: 500,
-            client: "string"
+            client: "string",
         },
     ];
     const projectsByMonth = {
@@ -48,41 +48,37 @@ export default function HistoryPage() {
         latestMonths: [
             {
                 month: "Mar",
-                projects: 4
+                projects: 4,
             },
             {
                 month: "Apr",
-                projects: 3
+                projects: 3,
             },
             {
                 month: "May",
-                projects: 6
+                projects: 6,
             },
             {
                 month: "Jun",
-                projects: 2
+                projects: 2,
             },
             {
                 month: "Jul",
-                projects: 4
+                projects: 4,
             },
             {
                 month: "Aug",
-                projects: 5
+                projects: 5,
             },
-        ]
+        ],
     };
 
     return (
         <>
-            <NumberCard
-                header="Projects"
-                value={214}
-                margin="-21%"
-            />
-            <ProjectsBarChart projectsByMonth={projectsByMonth}/>
-            <ProjectsLineChart/>
-            <ProjectsContainer projects={projects}/>
+            <NumberCard header="Projects" value={214} margin="-21%" />
+            <ProjectsBarChart projectsByMonth={projectsByMonth} />
+            <ProjectsLineChart />
+            <ProjectsContainer projects={projects} />
         </>
     );
 }

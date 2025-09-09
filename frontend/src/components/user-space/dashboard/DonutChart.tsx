@@ -1,14 +1,14 @@
 import React from "react";
 
 type DonutArcsProps = {
-    data: [number, number, number];                // 3 values
-    colors?: [string, string, string];             // optional colors
-    size?: number;                                 // px
-    strokeWidth?: number;                          // px
-    gapDeg?: number;                               // gap between segments in degrees
-    startAngleDeg?: number;                        // where to start (default top)
-    trackColor?: string;                           // optional background ring
-    rounded?: boolean;                             // rounded ends
+    data: [number, number, number]; // 3 values
+    colors?: [string, string, string]; // optional colors
+    size?: number; // px
+    strokeWidth?: number; // px
+    gapDeg?: number; // gap between segments in degrees
+    startAngleDeg?: number; // where to start (default top)
+    trackColor?: string; // optional background ring
+    rounded?: boolean; // rounded ends
 };
 
 const DonutArcs: React.FC<DonutArcsProps> = ({
@@ -26,7 +26,7 @@ const DonutArcs: React.FC<DonutArcsProps> = ({
     const r = (size - strokeWidth) / 2;
 
     // guard against negatives and total=0
-    const safe = data.map(v => Math.max(0, v)) as [number, number, number];
+    const safe = data.map((v) => Math.max(0, v)) as [number, number, number];
     const total = safe.reduce((a, b) => a + b, 0) || 1;
 
     const gapsTotal = gapDeg * safe.length;
@@ -35,7 +35,14 @@ const DonutArcs: React.FC<DonutArcsProps> = ({
     let angle = startAngleDeg;
 
     return (
-        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="max-lg:size-[100px]" role="img" aria-label="Donut arcs chart">
+        <svg
+            width={size}
+            height={size}
+            viewBox={`0 0 ${size} ${size}`}
+            className="max-lg:size-[100px]"
+            role="img"
+            aria-label="Donut arcs chart"
+        >
             {trackColor && (
                 <circle
                     cx={cx}
@@ -49,7 +56,8 @@ const DonutArcs: React.FC<DonutArcsProps> = ({
 
             {safe.map((value, i) => {
                 const segDeg = usableDeg * (value / total);
-                if (segDeg <= 0.0001) { // skip empty
+                if (segDeg <= 0.0001) {
+                    // skip empty
                     angle += gapDeg;
                     return null;
                 }
@@ -84,7 +92,7 @@ function describeArc(
     const start = polarToCartesian(cx, cy, r, startDeg);
     const end = polarToCartesian(cx, cy, r, endDeg);
     const sweep = 1;
-    const largeArc = (normalize(endDeg - startDeg) > 180) ? 1 : 0;
+    const largeArc = normalize(endDeg - startDeg) > 180 ? 1 : 0;
     return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} ${sweep} ${end.x} ${end.y}`;
 }
 
