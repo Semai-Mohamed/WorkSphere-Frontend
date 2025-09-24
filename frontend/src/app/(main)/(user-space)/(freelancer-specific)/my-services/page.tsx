@@ -1,8 +1,8 @@
 import NumberCard from "@/components/user-space/shared/NumberCard";
-import MyServicesContainer from "@/components/user-space/services/MyServicesContainer";
+import MyServicesContainer from "@/components/user-space/freelancer-specific/services/MyServicesContainer";
 import CardWrapper from "@/components/user-space/shared/CardWrapper";
 
-export default function ServicesPage() {
+export default function MyServicesPage() {
     const skills = [
         { "Graphic design": 12 },
         { "Graphic design": 12 },

@@ -1,17 +1,17 @@
 import OverlayButton from "@/components/OverlayButton";
 
-export default function Service({
+export default function Need({
     name,
     description,
     skills,
-    cost,
-    sold,
+    budget,
+    category,
 }: {
     name: string;
     description: string;
     skills: Array<string>;
-    cost: `$${number}`;
-    sold: number;
+    budget: { start: number; end: number };
+    category: string;
 }) {
     const calculateTotal = (cost: `$${number}`, sold: number) => {
         const costAsNumber = Number(cost.slice(1));
@@ -33,32 +33,25 @@ export default function Service({
                 {skills.map((skill, i) => (
                     <div
                         key={i}
-                        className="font-primary text-[11px] opacity-60"
+                        className="font-primary text-[11px] opacity-40"
                     >
                         {skill}
                     </div>
                 ))}
             </div>
-            <div className={"grid grid-cols-[auto_auto] gap-x-2"}>
-                <span className={"font-primary text-xs"}>Cost:</span>
-                <span
-                    className={
-                        "font-primary font-bold text-xs text-green text-end"
-                    }
-                >
-                    +{cost}
+            <div className={"flex flex-col justify-between"}>
+                <span className="flex justify-between">
+                    <span className={"font-primary text-xs"}>Budget:</span>
+                    <span className="font-primary font-bold text-xs text-blue text-end">
+                        ${budget.start}-${budget.end}
+                    </span>
                 </span>
 
-                <span className={"font-primary text-xs"}>Sold:</span>
-                <span className={"font-primary text-xs text-end"}>{sold}</span>
-
-                <span className={"font-primary text-xs mt-1.5"}>Total:</span>
-                <span
-                    className={
-                        "font-primary font-bold text-xs text-green text-end mt-1.5"
-                    }
-                >
-                    +{calculateTotal(cost, sold)}
+                <span className="flex flex-col gap-1">
+                    <span className={"font-primary text-xs"}>Category:</span>
+                    <span className="font-primary text-[11px] opacity-40 text-end">
+                        {category}
+                    </span>
                 </span>
             </div>
 

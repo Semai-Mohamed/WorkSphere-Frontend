@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CardWrapper from "../shared/CardWrapper";
+import CardWrapper from "../../shared/CardWrapper";
 import Service from "./Service";
 
 export default function MyServicesContainer() {
