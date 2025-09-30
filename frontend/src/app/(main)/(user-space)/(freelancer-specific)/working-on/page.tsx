@@ -34,7 +34,7 @@ export default function WorkingOnPage() {
             />
 
             <Calendar
-                deadline={{ year: new Date().getFullYear(), month: 8, day: 30 }}
+                deadline={{ year: new Date().getFullYear(), month: 9, day: 10 }}
             />
 
             {/* TODO: Complete it */}

@@ -44,20 +44,17 @@ export default function Calendar({
         return arrangedDays;
     }
 
-    function getMonthDays() {
-        const currentMonthMaxDays = new Date(
-            deadline.year,
-            deadline.month + 1,
-            0
-        ).getDate();
-
-        return currentMonthMaxDays;
+    function getMonthDays(year: number, month: number) {
+        return new Date(year, month + 1, 0).getDate();
     }
 
     function calendarDays() {
-        const today = new Date().getDate();
-        let currentMonth = new Date().getMonth();
-        const maxMonthDays = getMonthDays();
+        const todayDate = new Date();
+        let currentYear = todayDate.getFullYear();
+        let currentMonth = todayDate.getMonth();
+        let day = todayDate.getDate();
+
+        const startMonth = currentMonth;
 
         const days: Array<{
             number: number;
@@ -66,23 +63,47 @@ export default function Calendar({
         }> = [];
 
         for (let i = 0; i < 21; i++) {
-            if (today + i === maxMonthDays + 1) currentMonth++;
+            const maxMonthDays = getMonthDays(currentYear, currentMonth);
+
+            // rollover to next month
+            if (day > maxMonthDays) {
+                day = 1;
+                if (currentMonth === 11) {
+                    currentMonth = 0;
+                    currentYear++;
+                } else {
+                    currentMonth++;
+                }
+            }
+
+            // position relative to deadline
+            let position: "before" | "is" | "after";
+            if (
+                currentYear < deadline.year ||
+                (currentYear === deadline.year &&
+                    currentMonth < deadline.month) ||
+                (currentYear === deadline.year &&
+                    currentMonth === deadline.month &&
+                    day < deadline.day)
+            ) {
+                position = "before";
+            } else if (
+                currentYear === deadline.year &&
+                currentMonth === deadline.month &&
+                day === deadline.day
+            ) {
+                position = "is";
+            } else {
+                position = "after";
+            }
+
             days.push({
-                number:
-                    today + i <= maxMonthDays
-                        ? today + i
-                        : today + i - maxMonthDays,
-                position:
-                    currentMonth < deadline.month ||
-                    (currentMonth === deadline.month &&
-                        today + i < deadline.day)
-                        ? "before"
-                        : currentMonth === deadline.month &&
-                          today + i === deadline.day
-                        ? "is"
-                        : "after",
-                month: today + i <= maxMonthDays ? "current" : "next",
+                number: day,
+                position,
+                month: currentMonth === startMonth ? "current" : "next",
             });
+
+            day++;
         }
 
         return days;
@@ -121,14 +142,14 @@ export default function Calendar({
                     <div
                         key={i}
                         className={`font-primary font-bold text-xs flex justify-center items-center h-full aspect-square rounded-full mx-auto ${
-                            i === 0
+                            day.position === "is"
+                                ? "bg-yellow"
+                                : i === 0
                                 ? isLate()
                                     ? "text-red border-red border-[1.5px]"
                                     : "border-[1.5px] border-primary text-primary"
                                 : day.position === "before"
                                 ? "text-primary opacity-40"
-                                : day.position === "is"
-                                ? "bg-yellow"
                                 : day.position === "after"
                                 ? day.month === "next"
                                     ? "opacity-10"
