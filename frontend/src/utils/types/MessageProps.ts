@@ -1,4 +1,5 @@
 type MessageProps = {
+    className?: string;
     user: {
         fullname: string;
         image: string;

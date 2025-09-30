@@ -5,7 +5,7 @@ export default function UserMessage(props: MessageProps) {
     return (
         <Link href={`/inbox/1`}>
             <div
-                className={`p-4 cursor-pointer ${
+                className={`p-4 cursor-pointer ${props.className} ${
                     props.newMessage
                         ? "bg-[oklch(from_var(--color-primary)_l_c_h_/_0.15)] hover:bg-[oklch(from_var(--color-primary)_l_c_h_/_0.25)]"
                         : "hover:bg-[oklch(from_var(--color-primary)_l_c_h_/_0.08)]"

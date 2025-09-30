@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function useUserRole() {
     const getUserRole = (): "freelancer" | "client" => {
-        return "client";
+        return "freelancer";
     };
 
     const userRole = getUserRole();

@@ -1,25 +1,34 @@
 import Link from "next/link";
 
+type CardWrapperProps = {
+    children: React.ReactNode;
+    href?: string;
+    className?: string;
+} & (
+    | { header: string; customHeader?: undefined }
+    | { header?: undefined; customHeader: React.ReactNode }
+);
+
 export default function CardWrapper({
     children,
     header,
+    customHeader,
     href,
     className,
-}: Readonly<{
-    children: React.ReactNode;
-    header: string;
-    href?: string;
-    className?: string;
-}>) {
+}: CardWrapperProps) {
     return href === undefined ? (
         <div
             className={`bg-white shadow px-7 py-6 rounded-4xl flex flex-col gap-2 ${
                 className ?? ""
             }`}
         >
-            <h6 className="font-primary text-primary opacity-40 text-sm">
-                {header}
-            </h6>
+            {customHeader ? (
+                customHeader
+            ) : (
+                <h6 className="font-primary text-primary opacity-40 text-sm">
+                    {header}
+                </h6>
+            )}
             {children}
         </div>
     ) : (

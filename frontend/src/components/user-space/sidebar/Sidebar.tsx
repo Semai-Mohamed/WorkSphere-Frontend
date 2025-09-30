@@ -58,26 +58,6 @@ export default function Sidebar() {
             href: `/my-${userRole === "freelancer" ? "services" : "needs"}`,
         },
         {
-            icon: <MyFinancesIcon />,
-            name: "My Finances",
-            hasChildren: true,
-            index: 1,
-            subMenuShown: subMenuShown,
-            setSubMenuShown: setSubMenuShown,
-            childrenButtons: [
-                {
-                    icon: <WithdrawIcon />,
-                    name: "Withdraw",
-                    href: "/withdraw",
-                },
-                {
-                    icon: <MovementsIcon />,
-                    name: "Movements",
-                    href: "/movements",
-                },
-            ],
-        },
-        {
             icon: <MyAccountIcon />,
             name: "My Account",
             hasChildren: true,

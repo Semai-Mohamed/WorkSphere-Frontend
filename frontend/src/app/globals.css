@@ -93,7 +93,7 @@
     }
 
     ::selection {
-        @apply bg-[oklch(from_var(--color-dark-primary)_l_c_h_/_0.25)];
+        @apply bg-[oklch(from_var(--color-primary)_l_c_h_/_0.4)] ;
     }
 
     table tbody tr {
