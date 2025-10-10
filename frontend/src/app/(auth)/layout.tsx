@@ -1,7 +1,12 @@
-export default function AuthLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+import AuthLogo from "@/components/auth/AuthLogo";
+
+export default function AuthLayout({
+    children,
+}: Readonly<{ children: React.ReactNode }>) {
     return (
-        <body>
+        <body className="overflow-hidden">
             {children}
+            <AuthLogo />
         </body>
     );
 }
