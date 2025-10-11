@@ -178,12 +178,12 @@ export default function ChooseSkills() {
         <SignUpFormWrapper
             header="Setting up your profile"
             headerDescription="Choose your skills."
-            submitButtonClassName="w-[400px]"
-            formCustomClassName="w-[600px] flex flex-col items-center mx-auto"
+            submitButtonClassName="w-[400px] max-sm:w-full"
+            formCustomClassName="w-[600px] max-sm:w-[calc(100%-32px)] flex flex-col items-center mx-auto"
             accountType="freelancer"
         >
-            <div className="flex w-full">
-                <div className="flex-1 flex flex-col items-start gap-2">
+            <div className="flex max-sm:flex-col max-sm:gap-6 w-full">
+                <div className="flex-1 flex max-sm:flex-wrap sm:flex-col items-start gap-2">
                     {categories
                         .map((category) => category.name)
                         .map((categoryName, i) => (
@@ -195,6 +195,7 @@ export default function ChooseSkills() {
                             />
                         ))}
                 </div>
+                <hr className="sm:hidden opacity-20" />
                 <div className="flex-1 h-fit flex flex-wrap items-start gap-2">
                     {categories
                         .filter((category) => category.name === activeCategory)

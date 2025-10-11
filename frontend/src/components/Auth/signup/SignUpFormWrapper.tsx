@@ -64,7 +64,7 @@ export default function SignUpFormWrapper({
                 )}
             </form>
             {accountType === "client" ? (
-                <div className="flex gap-4 mt-auto mx-auto pb-[30px] w-[500px]">
+                <div className="max-sm:pt-10 flex gap-4 mt-auto mx-auto pb-[30px] w-[500px] max-sm:w-[calc(100%-32px)]">
                     <div className="flex-2 flex flex-col gap-1">
                         <span
                             className={`text-sm ${
@@ -106,7 +106,7 @@ export default function SignUpFormWrapper({
                     </div>
                 </div>
             ) : (
-                <div className="flex gap-4 mt-auto mx-auto pb-[30px] w-[500px]">
+                <div className="max-sm:pt-10 flex gap-4 mt-auto mx-auto pb-[30px] w-[500px] max-sm:w-[calc(100%-32px)]">
                     <div className="flex-1 flex flex-col gap-1">
                         <span
                             className={`text-sm ${
