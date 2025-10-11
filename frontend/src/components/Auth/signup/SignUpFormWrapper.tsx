@@ -5,6 +5,8 @@ export default function SignUpFormWrapper({
     header,
     headerDescription,
     submitButtonContent = "Continue",
+    submitButtonClassName,
+    formCustomClassName,
     children,
     accountType,
     skipAllowed = false,
@@ -12,6 +14,8 @@ export default function SignUpFormWrapper({
     header: string;
     headerDescription: string;
     submitButtonContent?: string;
+    submitButtonClassName?: string;
+    formCustomClassName?: string;
     children: ReactNode;
     accountType: "client" | "freelancer";
     skipAllowed?: boolean;
@@ -36,12 +40,16 @@ export default function SignUpFormWrapper({
             </div>
             <form
                 onSubmit={(e) => e.preventDefault()}
-                className="grid grid-cols-4 gap-x-5 gap-y-7 w-[400px] max-sm:w-[calc(100%-32px)] mx-auto"
+                className={`${
+                    formCustomClassName
+                        ? formCustomClassName
+                        : "grid grid-cols-4 gap-x-5 gap-y-7 w-[400px] max-sm:w-[calc(100%-32px)] mx-auto"
+                }`}
             >
                 {children}
                 <button
                     type="submit"
-                    className="big-button col-span-full mt-7 duration-300"
+                    className={`${submitButtonClassName} big-button col-span-full mt-7 duration-300`}
                 >
                     {submitButtonContent}
                 </button>

@@ -11,7 +11,8 @@ export default function AccountCreated({
             header={`Welcome ${user}`}
             headerDescription="Account created successfully"
             submitButtonContent="Set up my profile!"
-            accountType="client"
+            accountType={accountType}
+            skipAllowed={accountType === "client"}
         >
             <p className="col-span-full text-center text-xl">
                 Your account has been created successfully! Just one more step.

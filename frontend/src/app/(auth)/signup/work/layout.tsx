@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-    title: "Become a Client",
+    title: "Become a Freelancer",
 };
 
 export default function ClientSignUpLayout({
