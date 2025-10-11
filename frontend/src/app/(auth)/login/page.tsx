@@ -59,11 +59,11 @@ export default function LoginPage() {
                         <p className="font-medium">Or</p>
                         <hr className="w-full" />
                     </div>
-                    <div className="relative">
+                    <div className="relative col-span-full h-16">
                         <AuthButton platform="google" className="left-0" />
                         <AuthButton
                             platform="facebook"
-                            className="left-[calc(25%+10px)] hover:left-0"
+                            className="left-[calc(25%+5px)] hover:left-0"
                         />
                         <AuthButton
                             platform="apple"
@@ -71,7 +71,7 @@ export default function LoginPage() {
                         />
                         <AuthButton
                             platform="linkedin"
-                            className="left-[calc(75%+10px)] hover:left-0"
+                            className="left-[calc(75%+15px)] hover:left-0"
                         />
                     </div>
                 </div>

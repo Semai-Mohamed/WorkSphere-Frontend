@@ -9,7 +9,7 @@ export default function AuthButton({
 }) {
     return (
         <button
-            className={`${className} cursor-pointer overflow-hidden w-[calc(100%/4-10px)] absolute hover:w-full hover:z-10 flex group flex-1 duration-400 ease-out transition-[width_z-index] items-center font-medium rounded-[18px] hover:px-7 py-4 ${
+            className={`${className} cursor-pointer overflow-hidden w-[calc(25%-15px)] absolute hover:w-full hover:z-10 flex group flex-1 duration-400 ease-out transition-[width_z-index] items-center font-medium rounded-[18px] hover:px-7 py-4 ${
                 platform === "google"
                     ? "bg-[#fff] border-1 border-[rgba(31,31,31,0.1)]"
                     : platform === "facebook"
@@ -24,7 +24,7 @@ export default function AuthButton({
                 width={100}
                 height={100}
                 alt={`${platform}`}
-                className="h-[32px] w-fit max-sm:w-full group-[:not(:hover)]:w-full"
+                className="h-8 w-fit max-sm:w-full group-[:not(:hover)]:w-full"
             />
             <p
                 className={`max-sm:hidden absolute left-[100px] opacity-0 group-hover:opacity-100 text-nowrap text-[21px] transition-opacity duration-1000 ease-out ${
