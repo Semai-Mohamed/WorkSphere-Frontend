@@ -1,5 +1,6 @@
 "use client";
 import { SignUpDto } from "@/utils/types/validation/schemas";
+import { useRouter } from "next/navigation";
 import { ReactNode } from "react";
 
 export default function SignUpFormWrapper({
@@ -27,7 +28,7 @@ export default function SignUpFormWrapper({
     handle?: (data: any) => Promise<void>;
     change : SignUpDto
 }) {
-    console.log("Change in Wrapper:", change)
+    const router = useRouter();
     return (
         <>
             <div className="pt-6 pl-[30px]">
@@ -59,6 +60,7 @@ export default function SignUpFormWrapper({
                     type="button"
                     onClick={() => {
                         handle && handle(change);
+                       
                     }}
                     className={`${submitButtonClassName} big-button col-span-full mt-7 duration-300`}
                 >

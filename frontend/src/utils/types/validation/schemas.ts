@@ -20,6 +20,8 @@ export const signUpSchema = z.object({
     .min(8, "Password must be at least 8 characters")
     .regex(/(?=.*[A-Z])/, "Password must contain at least one uppercase letter")
     .regex(/(?=.*[0-9])/, "Password must contain at least one number"),
+  role: z.enum(["client", "admin", "freelancer"], "Role must be client, admin, or freelancer"),
+
 });
 
 export type SignUpDto = z.infer<typeof signUpSchema>

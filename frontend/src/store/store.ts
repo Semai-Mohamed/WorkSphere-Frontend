@@ -1,11 +1,17 @@
 import { create } from "zustand";
 
+enum UserRole {
+  ADMIN = "admin",
+  FREELANCER = "freelancer",
+  CLIENT = "client",
+}
+
 interface UserStore {
-  role: string | null;
-  setRole: (role: string) => void;
+  role: UserRole ;
+  setRole: (role: UserRole) => void;
 }
 
 export const useUserStore = create<UserStore>((set) => ({
-  role: null,
+  role: UserRole.CLIENT,
   setRole: (role) => set({ role }),
 }));
