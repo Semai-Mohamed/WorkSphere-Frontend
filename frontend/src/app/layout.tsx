@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Unbounded, Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import React from "react";
+import { Toaster } from "react-hot-toast";
 
 const unbounded = Unbounded({
     variable: "--unbounded",
@@ -35,6 +36,8 @@ export default function RootLayout({
             className={`${unbounded.variable} ${redHatDisplay.variable}`}
         >
             {children}
+            <Toaster position="top-right" reverseOrder={false} />
+
         </html>
     );
 }

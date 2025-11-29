@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
     "axios": "^1.13.2",
     "next": "^16.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.67.0",
+    "react-hot-toast": "^2.6.0",
     "zod": "^4.1.13",
     "zustand": "^5.0.8"
   },

@@ -1,5 +1,6 @@
 import { SignIndto, SignUpdto } from "@/utils/types/api/auth";
 import api from "../api";
+import { SignInDto, SignUpDto } from "@/utils/types/validation/schemas";
 
 const errorHandler = (error: any) => {
   return {
@@ -7,17 +8,19 @@ const errorHandler = (error: any) => {
   };
 }
 
-export const signIn = async (dto : SignIndto) => {
+export const signIn = async (dto : SignInDto) => {
   try {
     const response =  await api.post("/auth/signin", dto);
+    return response.data;
   } catch (error :any) {
    return errorHandler(error);
   }
 }
 
-export const signUp = async (dto : SignUpdto) => {
+export const signUp = async (dto : SignUpDto) => {
     try {
         const response =  await api.post("/auth/signup", dto);
+        return response.data;
     } catch (error :any) {
        return errorHandler(error);
     }
@@ -26,6 +29,7 @@ export const signUp = async (dto : SignUpdto) => {
 export const googleAuth = async () => {
     try {
         const response =  await api.get("/auth/google");
+        return response.data;
     } catch (error :any) {
        return errorHandler(error);
     }
@@ -34,6 +38,8 @@ export const googleAuth = async () => {
 export const googleAuthCallback = async () => {
     try {
         const response =  await api.get(`/auth/google/callback`);
+        return response.data;
+
     } catch (error :any) {
        return errorHandler(error);
     }
@@ -42,6 +48,8 @@ export const googleAuthCallback = async () => {
 export const forgetPassword = async () => {
     try {
         const response =  await api.post(`/auth/forgetPassword`); 
+        return response.data;
+
     } catch (error :any) {
        return errorHandler(error);
     }

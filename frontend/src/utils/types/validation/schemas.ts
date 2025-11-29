@@ -1,0 +1,38 @@
+import { z } from "zod";
+
+
+export const signUpSchema = z.object({
+  firstName: z
+    .string()
+    .min(2, "First name is required")
+    .max(50, "First name is too long"),
+
+  lastName: z
+    .string()
+    .min(2, "Last name is required")
+    .max(50, "Last name is too long"),
+
+  email: z
+    .email("Email must be valid"),
+
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/(?=.*[A-Z])/, "Password must contain at least one uppercase letter")
+    .regex(/(?=.*[0-9])/, "Password must contain at least one number"),
+});
+
+export type SignUpDto = z.infer<typeof signUpSchema>
+
+
+export const signInSchema = z.object({
+  email: z
+    .email("Email must be valid"),
+
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/(?=.*[A-Z])/, "Password must contain at least one uppercase letter")
+    .regex(/(?=.*[0-9])/, "Password must contain at least one number"),
+});
+export type SignInDto = z.infer<typeof signInSchema>
