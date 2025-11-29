@@ -8,9 +8,10 @@ type Props = {
     submitButtonContent : string,
     accountType : "client" | "freelancer",
     skipAllowed? : boolean,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    handle?: (data: any) => Promise<void>
 };
-export default function ProfileAppearance({header, headerDescription, submitButtonContent, accountType, skipAllowed, children} : Props) {
+export default function ProfileAppearance({header, headerDescription, submitButtonContent, accountType, skipAllowed, children, handle} : Props) {
     const [image, setImage] = useState<string | ArrayBuffer | null>(null);
     const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
@@ -28,6 +29,7 @@ export default function ProfileAppearance({header, headerDescription, submitButt
             submitButtonContent={submitButtonContent}
             accountType={accountType}
             skipAllowed={skipAllowed}
+            handle={handle}
         >
            {children}
         </SignUpFormWrapper>

@@ -36,7 +36,9 @@ export default function RootLayout({
             className={`${unbounded.variable} ${redHatDisplay.variable}`}
         >
             {children}
-            <Toaster position="top-right" reverseOrder={false} />
+        <body>
+                <Toaster position="top-right" reverseOrder={false} />
+        </body>
 
         </html>
     );

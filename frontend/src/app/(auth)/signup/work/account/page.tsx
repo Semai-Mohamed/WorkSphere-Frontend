@@ -29,9 +29,9 @@ export default function SignUpFreelancerPage() {
     email: "",
     password: "",
   });
-  const handleSignUp = async (data: SignUpDto) => {
+  const handleSignUp = async (data: SignUpDto): Promise<void> => {
     const valid = signUpSchema.safeParse(data);
-    if (!valid.success) return false;
+    if (!valid.success) return;
     const result = await signUp(handleChange);
     if ((result as any).error) {
       toast.error(`Signup failed: ${(result as any).error}`);
@@ -46,6 +46,7 @@ export default function SignUpFreelancerPage() {
       submitButtonContent="Continue"
       accountType="freelancer"
       skipAllowed
+      handle={handleSignUp(handleChange)}
     >
       <InputField
         type="text"

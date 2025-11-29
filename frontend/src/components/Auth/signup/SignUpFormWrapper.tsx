@@ -11,6 +11,7 @@ export default function SignUpFormWrapper({
     accountType,
     skipAllowed = false,
     skipContent = "Skip for now",
+    handle,
 }: {
     header: string;
     headerDescription: string;
@@ -21,6 +22,7 @@ export default function SignUpFormWrapper({
     accountType: "client" | "freelancer";
     skipAllowed?: boolean;
     skipContent?: string;
+    handle?: (data: any) => Promise<void>;
 }) {
     return (
         <>
@@ -50,6 +52,7 @@ export default function SignUpFormWrapper({
             >
                 {children}
                 <button
+                    onClick={()=>{handle}}
                     type="submit"
                     className={`${submitButtonClassName} big-button col-span-full mt-7 duration-300`}
                 >
