@@ -3,12 +3,15 @@ import Image from "next/image";
 export default function AuthButton({
   platform,
   className,
+  onClick,
 }: {
   platform: "google" | "facebook" | "apple" | "linkedin";
   className?: string;
+  onClick?: () => void;
 }) {
   return (
     <button
+      onClick={onClick}
       className={`${className} cursor-pointer overflow-hidden w-[calc(25%-15px)] absolute hover:w-full hover:z-10 flex group flex-1 duration-400 ease-out transition-[width_z-index] items-center font-medium rounded-[18px] hover:px-7 py-4 ${
         platform === "google"
           ? "bg-[#fff] border-1 border-[rgba(31,31,31,0.1)]"

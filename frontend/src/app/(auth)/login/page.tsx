@@ -105,7 +105,7 @@ export default function LoginPage() {
             <hr className="w-full" />
           </div>
           <div className="relative  h-16  flex justify-center items-center w-full">
-            <AuthButton platform="google" className="" />
+            <AuthButton onClick={()=> {router.push(`${process.env.NEXT_PUBLIC_API_URL}/auth/google`)}} platform="google" className="" />
           </div>
         </div>
       </div>
