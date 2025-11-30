@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
-import SignUpFormWrapper from "../SignUpFormWrapper";
 import { ChangeEvent, useState } from "react";
 import { SignUpDto } from "@/utils/types/validation/schemas";
+import SignUpFormWrapper from "../SignUpFormWrapper";
 type Props = {
     header : string,
     headerDescription : string,
@@ -11,7 +11,7 @@ type Props = {
     skipAllowed? : boolean,
     children?: React.ReactNode,
     handle?: (data: any) => Promise<void>
-    change : SignUpDto
+    change? : SignUpDto
 };
 export default function ProfileAppearance({header, headerDescription, submitButtonContent, accountType, skipAllowed, children, handle , change} : Props) {
     const [image, setImage] = useState<string | ArrayBuffer | null>(null);

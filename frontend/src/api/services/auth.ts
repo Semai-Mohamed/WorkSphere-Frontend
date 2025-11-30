@@ -1,12 +1,7 @@
-import { SignIndto, SignUpdto } from "@/utils/types/api/auth";
-import api from "../api";
+import api, { errorHandler } from "../api";
 import { SignInDto, SignUpDto } from "@/utils/types/validation/schemas";
 
-const errorHandler = (error: any) => {
-  return {
-    error: error?.response?.data?.message || "Something went wrong",
-  };
-}
+
 
 export const signIn = async (dto : SignInDto) => {
   try {

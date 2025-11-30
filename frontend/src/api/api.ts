@@ -19,4 +19,10 @@ api.interceptors.response.use(
   }
 );
 
+export const errorHandler = (error: any) => {
+  return {
+    error: error?.response?.data?.message || "Something went wrong",
+  };
+}
+
 export default api;

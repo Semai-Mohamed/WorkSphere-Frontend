@@ -1,13 +1,31 @@
 'use client'
+import { getProfile } from "@/api/services/user";
 import AccountCreated from "@/components/auth/signup/shared/AccountCreated";
 import StepOne from "@/components/auth/signup/shared/StepOne";
 import ChooseSkills from "@/components/auth/signup/work/ChooseSkills";
 import ProfileAppearance from "@/components/Auth/signup/work/ProfileAppearance";
 import ProfileFinished from "@/components/auth/signup/work/ProfileFinished";
+import { InputField } from "@/components/user-space/InputField";
+import { PortfolioDto, SignUpDto } from "@/utils/types/validation/schemas";
+import { sign } from "crypto";
 import Image from "next/image";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function SignUpFreelancerPage() {
+    const [profile, setProfile] = useState<SignUpDto>({
+        firstName: "",
+        lastName: "",
+        email: "",
+        role: "freelancer",
+    });
+    const [portfolio, setPortfolio] = useState<PortfolioDto>({
+         mobile: '',
+         description: '',
+         location: '',
+         photo: undefined,
+          portfolioLink: undefined,
+    });
     const [image, setImage] = useState<string | ArrayBuffer | null>(null);
             const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
                 const file = e.target.files?.[0];
@@ -17,6 +35,20 @@ export default function SignUpFreelancerPage() {
                     reader.readAsDataURL(file);
                 }
             };
+    useEffect(()=>{
+        const fetchProfile = async (): Promise<void> => {
+    
+        const result = await getProfile();
+    if ((result as any).error) {
+      toast.error(`Can't get profile: ${(result as any).error}`);
+      console.log((result as any).error);
+    } else {
+         setProfile(result as SignUpDto);
+      
+    }
+  };
+  fetchProfile();
+    }, [])
     return <ProfileAppearance header="Setting up your profile" headerDescription="Your profile appearance" submitButtonContent="Finish" accountType="freelancer" skipAllowed >
         <div className="col-span-full flex items-center gap-5">
                             <div className="group rounded-full overflow-hidden relative border-1 border-[oklch(from_var(--color-black)_l_c_h_/_.1)]">
@@ -46,18 +78,17 @@ export default function SignUpFreelancerPage() {
             
                             <div className="flex flex-col gap-1">
                                 <span className="font-primary font-bold text-2xl">
-                                    Hamza Djedidi
+                                    {profile.firstName} 
                                 </span>
-                                <span className="text-xl">Hamza Djedidi</span>
+                                <span className="text-xl">{profile.lastName}</span>
                             </div>
                         </div>
             
-                        <textarea
-                            name="about"
-                            placeholder="About..."
-                            rows={3}
-                            className="col-span-full resize-none"
-                        ></textarea>
+                       <InputField></InputField>
+                       <InputField></InputField>
+                       <InputField></InputField>
+                       <InputField></InputField>
+                       <InputField></InputField>
     </ProfileAppearance>
 }
 

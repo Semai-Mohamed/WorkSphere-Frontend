@@ -26,7 +26,7 @@ export default function SignUpFormWrapper({
     skipAllowed?: boolean;
     skipContent?: string;
     handle?: (data: any) => Promise<void>;
-    change : SignUpDto
+    change?: SignUpDto
 }) {
     const router = useRouter();
     return (

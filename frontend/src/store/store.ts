@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-enum UserRole {
+export enum UserRole {
   ADMIN = "admin",
   FREELANCER = "freelancer",
   CLIENT = "client",
