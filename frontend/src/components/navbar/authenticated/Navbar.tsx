@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import MessagesContainer from "./navbar-components/messages/MessagesContainer";
@@ -8,10 +8,53 @@ import NotificationContainer from "./navbar-components/notifications/Notificatio
 import UserMenu from "./navbar-components/user-menu/UserMenu";
 import MenuShownType from "@/utils/types/MenuShownType";
 import NavbarReducerAction from "@/utils/types/NavbarReducerAction";
+import { getProfile } from "@/api/services/user";
+import toast from "react-hot-toast";
+import { PortfolioDto, SignUpDto } from "@/utils/types/validation/schemas";
+import { getPortfolio } from "@/api/services/portfolio";
 
 type MenuKey = keyof MenuShownType;
 
 export default function Navbar() {
+    const [profile, setProfile] = useState<SignUpDto>({
+       firstName: "",
+       lastName: "",
+       email: "",
+       role: "freelancer",
+       id: undefined,
+     });
+     const [portfolio, setPortfolio] = useState<{dto: PortfolioDto, image: string}>({dto: { mobile: "" , description: "", location : '' , portfolioLink: ""  }, image: ""});
+   useEffect(() => {
+  const fetchData = async () => {
+    // 1️⃣ Fetch profile first
+    const profileResult = await getProfile();
+    if ((profileResult as any).error) {
+      toast.error(`Can't get profile: ${(profileResult as any).error}`);
+      console.log((profileResult as any).error);
+      return;
+    }
+
+    setProfile(profileResult as SignUpDto);
+    console.log("Fetched profile:", profileResult);
+
+    // 2️⃣ Fetch portfolio using the fetched user id
+    const userId = (profileResult as SignUpDto).id;
+    if (!userId) return;
+
+    const portfolioResult = await getPortfolio(userId);
+    if ((portfolioResult as any).error) {
+      toast.error(`Can't get portfolio: ${(portfolioResult as any).error}`);
+      console.log((portfolioResult as any).error);
+    } else {
+      setPortfolio(portfolioResult as { dto: PortfolioDto; image: string });
+      console.log("Fetched portfolio:", portfolioResult);
+    }
+  };
+
+  fetchData();
+}, []); 
+
+
   const path = usePathname();
 
   const toggleMenu = (state: MenuShownType, key: MenuKey): MenuShownType => {
@@ -165,12 +208,14 @@ export default function Navbar() {
             className="flex items-center gap-[18px] cursor-pointer"
             onClick={() => dispatch({ type: "toggleUser" })}
           >
-            <div className="w-[44px] aspect-square rounded-full bg-primary"></div>
+            <div className="w-[44px] aspect-square rounded-full bg-primary">
+              <Image src={portfolio.image} alt={`${profile.firstName} ${profile.lastName}`}  className="rounded-full w-full h-full" />
+            </div>
             <div className="flex flex-col max-md:hidden">
               <span className="font-primary font-bold text-sm text-primary">
-                Hamza Djedidi
+                 {profile.firstName}
               </span>
-              <span className="text-xs text-primary">Graphic Designer</span>
+              <span className="text-xs text-primary">{profile.lastName}</span>
             </div>
           </div>
 

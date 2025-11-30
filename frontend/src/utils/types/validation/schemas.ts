@@ -1,6 +1,8 @@
 import { z } from "zod";
+import { id } from "zod/locales";
 
 export const signUpSchema = z.object({
+  id: z.number().optional(),
   firstName: z
     .string()
     .min(2, "First name is required")

@@ -8,6 +8,7 @@ import ProfileAppearance from "@/components/Auth/signup/work/ProfileAppearance";
 import ProfileFinished from "@/components/auth/signup/work/ProfileFinished";
 import { InputField } from "@/components/user-space/InputField";
 import { Validation } from "@/components/user-space/validation";
+import { useUserStore } from "@/store/store";
 import {
   PortfolioDto,
   portfolioSchema,
@@ -22,6 +23,7 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 export default function SignUpFreelancerPage() {
+  const role = useUserStore((state) => state.role);
   const router = useRouter();
   const [profile, setProfile] = useState<SignUpDto>({
     firstName: "",
@@ -62,7 +64,11 @@ export default function SignUpFreelancerPage() {
         toast.error(`Creating portfolio failed: ${(result as any).error}`);
       } else {
         toast.success("Portfolio created successfully!");
-        router.push("/");
+        if(profile.role === "freelancer"){
+          router.push("/");
+        } else {
+          router.push("/client");
+        }
       }
     };
 

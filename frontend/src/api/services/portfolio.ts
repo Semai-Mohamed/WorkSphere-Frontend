@@ -18,3 +18,12 @@ export const createPortfolio = async (dto: PortfolioDto, file?: File) => {
     return errorHandler(error);
   }
 };
+
+export const getPortfolio = async (id : number) => {
+  try {
+    const response = await api.get("portfolio/"+id);
+    return response.data as {dto : PortfolioDto , image : string};
+  } catch (error: any) {
+    return errorHandler(error);
+  }
+};
