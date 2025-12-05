@@ -1,4 +1,4 @@
-import { PortfolioDto } from "@/utils/types/validation/schemas";
+import { PortfolioDto } from "@/utils/types/validation/user";
 import api, { errorHandler } from "../api";
 
 export const createPortfolio = async (dto: PortfolioDto, file?: File) => {

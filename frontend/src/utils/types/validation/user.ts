@@ -1,5 +1,26 @@
 import { z } from "zod";
-import { id } from "zod/locales";
+
+export const portfolioSchema = z.object({
+  mobile: z
+    .string()
+    .min(10, "Mobile number is required")
+    .max(15, "Mobile number is too long"),
+
+
+  description: z
+    .string()
+    .min(10, "Description is required")
+    .max(500, "Description is too long"),
+
+  location: z
+    .string()
+    .min(2, "Location is required")
+    .max(100, "Location is too long"),
+
+  portfolioLink: z.url("Portfolio link must be a valid URL").optional(),
+  photo : z.string().optional(),
+});
+
 
 export const signUpSchema = z.object({
   id: z.number().optional(),
@@ -26,6 +47,8 @@ export const signUpSchema = z.object({
     ["client", "admin", "freelancer"],
     "Role must be client, admin, or freelancer",
   ),
+  portfolio : portfolioSchema.optional(),
+  photo : z.string().optional(),
 });
 
 export type SignUpDto = z.infer<typeof signUpSchema>;
@@ -44,24 +67,5 @@ export type SignInDto = z.infer<typeof signInSchema>;
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const ALLOWED_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
 
-export const portfolioSchema = z.object({
-  mobile: z
-    .string()
-    .min(10, "Mobile number is required")
-    .max(15, "Mobile number is too long"),
-
-
-  description: z
-    .string()
-    .min(10, "Description is required")
-    .max(500, "Description is too long"),
-
-  location: z
-    .string()
-    .min(2, "Location is required")
-    .max(100, "Location is too long"),
-
-  portfolioLink: z.url("Portfolio link must be a valid URL").optional(),
-});
 
 export type PortfolioDto = z.infer<typeof portfolioSchema>;
