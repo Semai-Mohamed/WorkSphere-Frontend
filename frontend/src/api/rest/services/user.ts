@@ -13,7 +13,7 @@ export const getProfile = async () => {
 
 export const updateProfile = async (data: Partial<SignUpDto>) => {
   try {
-    const response = await api.put("user/update", data);
+    const response = await api.patch("user/update", data);
     return response.data;
   } catch (error: any) {
     return errorHandler(error);

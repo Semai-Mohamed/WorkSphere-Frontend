@@ -7,6 +7,7 @@ type Props = {
   control: any; // control must be passed from parent
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
+  value?: string
 };
 
 export const InputField = ({
@@ -16,6 +17,7 @@ export const InputField = ({
   control,
   onChange,
   className,
+  value, 
 }: Props) => {
   return (
     <Controller
@@ -25,7 +27,7 @@ export const InputField = ({
         <input
           type={type}
           placeholder={placeholder}
-          value={field.value || ""}
+          value={field.value }
           onChange={(e) => {
             field.onChange(e); // update RHF + run Zod validation
             onChange?.(e); // your custom update
