@@ -27,7 +27,7 @@ export const InputField = ({
         <input
           type={type}
           placeholder={placeholder}
-          value={field.value }
+          value={field.value || ""}
           onChange={(e) => {
             field.onChange(e); // update RHF + run Zod validation
             onChange?.(e); // your custom update

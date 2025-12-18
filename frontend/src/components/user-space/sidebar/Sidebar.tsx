@@ -33,7 +33,7 @@ export default function Sidebar() {
     },
     {
       icon: <MyProjectsIcon />,
-      name: "My Projects",
+      name: "My Offers",
       index: 0,
       subMenuShown: subMenuShown,
       setSubMenuShown: setSubMenuShown,
@@ -71,7 +71,7 @@ export default function Sidebar() {
         },
         {
           icon: <ModifyAccountIcon />,
-          name: "Modify Account",
+          name: "Modify Projects",
           href: "/account",
         },
       ],

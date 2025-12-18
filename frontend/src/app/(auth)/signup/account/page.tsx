@@ -44,7 +44,7 @@ export default function SignUpFreelancerPage() {
       toast.error(`Signup failed: ${(result as any).error}`);
     } else {
       toast.success("Account created successfully!");
-      router.push("../login");
+      router.push("/login");
     }
   };
   return (
