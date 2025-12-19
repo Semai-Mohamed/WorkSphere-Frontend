@@ -19,6 +19,9 @@ export const portfolioSchema = z.object({
 
   portfolioLink: z.url("Portfolio link must be a valid URL").optional(),
   photo : z.string().optional(),
+  totalAmount : z.number().optional(),
+  thisMonthAmount : z.number().optional(),
+  previousMonthAmount : z.number().optional(),
 });
 
 

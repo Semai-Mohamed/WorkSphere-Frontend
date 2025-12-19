@@ -9,7 +9,7 @@ type NumberCardProps = {
   value: number | `$${number}`;
 } & ({ href?: undefined } | { href: string }) &
   (
-    | { customFooter?: undefined; margin: `${"+" | "-"}${number}%` }
+    | { customFooter?: undefined; margin: any }
     | { customFooter: React.ReactNode; margin?: undefined }
   );
 

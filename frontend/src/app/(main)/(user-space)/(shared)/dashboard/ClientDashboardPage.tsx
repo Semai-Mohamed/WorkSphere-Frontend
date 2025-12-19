@@ -6,19 +6,78 @@ import CardWrapper from "@/components/user-space/shared/CardWrapper";
 import NumberCard from "@/components/user-space/shared/NumberCard";
 import MyActiveNeeds from "@/components/user-space/client-specific/dashboard/MyActiveNeeds";
 import useUserRole from "@/hooks/useUserRole";
+import toast from "react-hot-toast";
+import { useEffect, useState } from "react";
+import { PortfolioDto, SignUpDto } from "@/utils/types/validation/user";
+import { getProfile } from "@/api/rest/services/user";
+import { getProjects } from "@/api/rest/services/project";
+import { set } from "zod";
+import { ProjectEntity } from "@/utils/types/ProjectEntity";
 
 export default function ClientDashboardPage() {
-  const userRole = useUserRole();
+  const [profile , setProfile] = useState<SignUpDto>({} as SignUpDto);
+  const [projects , setProjects] = useState<ProjectEntity[]>([]);
+  const now = new Date();
+  const currentMonth  = now.getMonth()
+  const currentYear = now.getFullYear();
 
+  const previousDate = new Date(now)
+  previousDate.setMonth(now.getMonth() -1)
+  const previousMonth = previousDate.getMonth()
+  const previousYear = previousDate.getFullYear();
+
+  let currentMonthCount = 0;
+  let previousMonthCount = 0;
+  projects.forEach((project) =>{
+    const date = new Date(project.createdAt)
+    const month = date.getMonth();
+    const year = date.getFullYear();
+
+    if (year === currentYear && month === currentMonth) currentMonthCount++;
+    else if (year === previousYear && month === previousMonth) previousMonthCount++;
+
+  })
+  const projectCount = projects.length
+  console.log("Projects: ", projects);
+  const growth = previousMonthCount > 0
+  ? ((currentMonthCount - previousMonthCount) / previousMonthCount) * 100
+  : 100;
+
+  
+  const userRole = useUserRole();
+  
+  useEffect(()=>{
+    const fetch = async () => {
+    const ProfileResponse = await getProfile() as SignUpDto | {error : {message : string}};
+    if((ProfileResponse as any).error){
+      toast.error((ProfileResponse as any).error.message)
+    } else {
+      setProfile(ProfileResponse as SignUpDto);
+    }
+     
+     
+    const Projectsresponse = await getProjects((ProfileResponse as SignUpDto).id || 0) as ProjectEntity[] | {error : {message : string}};
+      if((Projectsresponse as any).error){
+        toast.error((Projectsresponse as any).error.message)
+      }
+      else {
+        setProjects(Projectsresponse as ProjectEntity[]);
+      }
+  }
+    
+    fetch();
+    
+  },[])
+  
   return (
     <>
       <NumberCard
         header={userRole === "freelancer" ? `Profit` : "Spendings"}
-        value="$1700"
-        margin="+25%"
+        value={`$${profile.portfolio?.thisMonthAmount || 0}`}
+        margin={`${((profile.portfolio?.thisMonthAmount || 0) - (profile.portfolio?.previousMonthAmount || 0)) / (profile.portfolio?.previousMonthAmount || 1) >= 0 ? "+" : ""}${Math.abs(((profile.portfolio?.thisMonthAmount || 0) - (profile.portfolio?.previousMonthAmount || 0)) / (profile.portfolio?.previousMonthAmount || 1) * 100).toFixed(2)}%`}
         href=""
       />
-      <NumberCard header="Projects" value={214} margin="-25%" href="/history" />
+      <NumberCard header="Projects" value={projectCount} margin={`${growth >= 0 ? "+" : ""}${growth.toFixed(2)}%`} href={"/account"} />
       {userRole === "freelancer" ? (
         <SkillsPie
           skills={[

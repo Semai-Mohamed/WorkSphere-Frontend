@@ -115,7 +115,7 @@ export default function SideButton(props: SideButtonProps) {
                   menuExpanded ? i * 48 : path === childButton.href && 0
                 }px`,
               }}
-              href={childButton.href}
+              href={childButton.href as any}
             >
               {i === 0 && (
                 <>
@@ -178,7 +178,7 @@ export default function SideButton(props: SideButtonProps) {
             "--custom-color": `${props.customColor}`,
           } as React.CSSProperties
         }
-        href={props.href ?? ""}
+        href={(props.href ?? "") as any}
       >
         {cloneIcon(props.icon)}
         {props.name}

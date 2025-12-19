@@ -27,3 +27,30 @@ export const unenrolledOffer = async (offerId: number,userId : number) => {
     return errorHandler(error);
   }
 }
+
+export const getEnrolledOffers = async(userId : number) => {
+  try {
+    const response = await api.get(`/offer/enrolled/user/`+userId);
+    return response.data as OfferDto[];
+  } catch (error: any) {
+    return errorHandler(error);
+  }
+}
+
+export const getAcceptedOffers = async(userId : number) => {
+  try {
+    const response = await api.get(`/offer/accepted/user/`+userId);
+    return response.data as OfferDto[];
+  } catch (error: any) {
+    return errorHandler(error);
+  }
+}
+
+export const getFinishedOffers = async(userId : number) => {
+  try {
+    const response = await api.get(`/offer/finished/user/`+userId);
+    return response.data as OfferDto[];
+  } catch (error: any) {
+    return errorHandler(error);
+  }
+}
