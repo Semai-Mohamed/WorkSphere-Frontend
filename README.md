@@ -1,8 +1,8 @@
-# WorkWave
+# WorkSphere
 
 
 
-<p>WorkWave is a modern freelance platform built with Next.js 15, tailored to connect clients with skilled freelancers. It provides a seamless experience for managing projects, offers, and real-time communication.</p>
+<p>WorkSphere is a modern freelance platform built with Next.js 15, tailored to connect clients with skilled freelancers. It provides a seamless experience for managing projects, offers, and real-time communication.</p>
 
 ---
 
@@ -56,7 +56,7 @@ src/
 
 ```bash
 git clone <repository-url>
-cd workwave/frontend
+cd WorkSphere/frontend
 ```
 
 **2. Install dependencies**:
