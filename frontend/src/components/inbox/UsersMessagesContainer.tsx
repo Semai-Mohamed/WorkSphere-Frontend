@@ -1,6 +1,7 @@
 "use client";
 import { usePathname } from "next/navigation";
 import UserMessage from "./UserMessage";
+import { id } from "zod/locales";
 
 export default function UsersMessagesContainer() {
   const path = usePathname();
@@ -48,62 +49,41 @@ export default function UsersMessagesContainer() {
 
         <div className="flex flex-col overflow-y-auto scroll-pb-2.5 flex-1">
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
-            newMessage
-            messagesCount={2}
+          
+            message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
+          
           />
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
+            message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
           />
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
+            message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
           />
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
+             message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
           />
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
+            message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
           />
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
+             message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
           />
           <UserMessage
-            user={{
-              fullname: "Hamza Djedidi",
-              image: "",
-            }}
-            message="Message message message message"
-            time="5m"
+             message={{ id: 1, content: "Message message message message", createdAt: new Date() }}
+          
+            length={3}
           />
         </div>
       </div>
